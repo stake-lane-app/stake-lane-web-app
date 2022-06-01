@@ -1,20 +1,34 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:stake_lane_web_app/screens/home.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:stake_lane_web_app/layout.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const StakeLaneApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class StakeLaneApp extends StatelessWidget {
+  const StakeLaneApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Some YT course',
-      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      title: "App",
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        textTheme: GoogleFonts.mulishTextTheme(
+          Theme.of(context).textTheme
+        ).apply(
+          bodyColor: Colors.black
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
+        }),
+        primaryColor: Colors.green
+      ),
+      home: const SiteLayout(),
     );
   }
 }
