@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stake_lane_web_app/helpers/responsiveness.dart';
+import 'package:stake_lane_web_app/widgets/large_screen.dart';
+import 'package:stake_lane_web_app/widgets/small_screen.dart';
 
 class SiteLayout extends StatelessWidget {
   const SiteLayout({super.key});
@@ -11,20 +14,9 @@ class SiteLayout extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Row(
-        children: [
-          Expanded(
-            child: Container(
-              color: Colors.red,
-            )
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              color: Colors.blue,
-            )
-          ),
-        ],
+      body: const ResponsiveWidget(
+        largeScreen: LargeScreen(),
+        smallScreen: SmallScreen()
       ),
     );
   }
