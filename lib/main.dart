@@ -14,7 +14,7 @@ class StakeLaneApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "App",
+      title: "Stake Lane",
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.mulishTextTheme(
@@ -28,7 +28,7 @@ class StakeLaneApp extends StatelessWidget {
         }),
         primaryColor: Colors.green
       ),
-      home: const SiteLayout(),
+      home: SiteLayout(),
     );
   }
 }
