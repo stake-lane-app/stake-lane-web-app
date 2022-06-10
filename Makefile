@@ -3,7 +3,7 @@ physical_android = adb-18181FDF6004RW-pl0J83._adb-tls-connect._tcp
 virtual_android = emulator-5554
 
 run-web:
-	flutter run --device-id $(web)
+	flutter run -d headless-server --web-port=8080 --device-id $(web)
 
 run-physical-android:
 	flutter run --device-id $(physical_android)
