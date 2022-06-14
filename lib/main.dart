@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stake_lane_web_app/controllers/menu_controller.dart';
+import 'package:stake_lane_web_app/controllers/navigation_controller.dart';
 import 'package:stake_lane_web_app/layout.dart';
 import 'package:get/get.dart';
 
 void main() {
   Get.put(MenuController());
+  Get.put(NavigationController());
   runApp(const StakeLaneApp());
 }
 
