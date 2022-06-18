@@ -81,7 +81,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
           ? Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 18),
                   child: Image.asset(
                     "assets/icons/logo.png",
                     width: 28,
@@ -95,9 +95,8 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
               onPressed: () {
                 key.currentState?.openDrawer();
               }),
-      elevation: 1,
       title: Row(children: [
-        CustomText(text: "Stake Lane", color: dark, size: 20),
+        CustomText(text: "Stake Lane", color: dark, size: 14),
         Expanded(child: Container()),
         const SizedBox(width: 10),
         personalArea(context),
@@ -106,6 +105,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
         bell(),
         settings(),
       ]),
+      elevation: 0,
       iconTheme: IconThemeData(color: dark),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
     );

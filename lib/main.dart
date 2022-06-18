@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/controllers/menu_controller.dart';
 import 'package:stake_lane_web_app/controllers/navigation_controller.dart';
 import 'package:stake_lane_web_app/layout.dart';
@@ -20,7 +21,7 @@ class StakeLaneApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Stake Lane",
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: light,
           textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
               .apply(bodyColor: Colors.black),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
