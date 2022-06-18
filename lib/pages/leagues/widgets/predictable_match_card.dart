@@ -27,7 +27,7 @@ Widget club(logo, name) {
   );
 }
 
-Widget predictingClubArea() {
+Widget predictingClubArea(previousPrediction) {
   return Column(
     children: [
       IconButton(
@@ -39,7 +39,7 @@ Widget predictingClubArea() {
       CustomText(
         size: 24,
         color: dark,
-        text: "-",
+        text: previousPrediction is String ? previousPrediction : "-",
       ),
       IconButton(
         onPressed: (() => {}),
@@ -51,10 +51,10 @@ Widget predictingClubArea() {
   );
 }
 
-Widget predictingArea() {
+Widget predictingArea(homeTeamPrediction, awayTeamPrediction) {
   return Row(
     children: [
-      predictingClubArea(),
+      predictingClubArea(homeTeamPrediction),
       const SizedBox(width: 20),
       Image.asset(
         "assets/match_card/cross.png",
@@ -65,7 +65,7 @@ Widget predictingArea() {
         color: dark,
       ),
       const SizedBox(width: 20),
-      predictingClubArea(),
+      predictingClubArea(awayTeamPrediction),
     ],
   );
 }
@@ -78,10 +78,10 @@ class PredictableMatchCard extends StatelessWidget {
     required this.isoDateStartingHour,
     required this.homeTeamName,
     required this.homeTeamLogo,
-    required this.homeTeamPrediction,
     required this.awayTeamName,
     required this.awayTeamLogo,
-    required this.awayTeamPrediction,
+    this.homeTeamPrediction,
+    this.awayTeamPrediction,
   });
 
   final String leagueCountry;
@@ -91,11 +91,11 @@ class PredictableMatchCard extends StatelessWidget {
 
   final String homeTeamName;
   final String homeTeamLogo;
-  final String homeTeamPrediction;
+  final String? homeTeamPrediction;
 
   final String awayTeamName;
   final String awayTeamLogo;
-  final String awayTeamPrediction;
+  final String? awayTeamPrediction;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +149,7 @@ class PredictableMatchCard extends StatelessWidget {
             const SizedBox(width: 20),
             club(homeTeamLogo, homeTeamName),
             // const SizedBox(width: 16),
-            predictingArea(),
+            predictingArea(homeTeamPrediction, awayTeamPrediction),
             // const SizedBox(width: 16),
             club(awayTeamLogo, awayTeamName),
             const SizedBox(width: 20),
