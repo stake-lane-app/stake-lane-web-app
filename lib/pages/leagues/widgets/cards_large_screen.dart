@@ -9,12 +9,12 @@ class CardsLargeScreen extends StatelessWidget {
     // double width = MediaQuery.of(context).size.width;
 
     return Column(
-      children: [
+      children: const [
         PredictableMatchCard(
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png",
           leagueName: "Brasileirão",
-          startingHour: DateTime.parse("2020-01-28T07:12:50+00:00"),
+          isoDateStartingHour: "2020-01-28T07:10:50+00:00",
           homeTeamName: "Palmeiras",
           homeTeamLogo:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/640px-Palmeiras_logo.svg.png",
@@ -28,7 +28,7 @@ class CardsLargeScreen extends StatelessWidget {
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2560px-Flag_of_Argentina.svg.png",
           leagueName: "Primera Division",
-          startingHour: DateTime.parse("2020-01-28T07:12:50+00:00"),
+          isoDateStartingHour: "2020-01-29T22:30:50+00:00",
           homeTeamName: "Rosario Central",
           homeTeamLogo:
               "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Rosario_Central_logo.svg/1200px-Rosario_Central_logo.svg.png",
@@ -42,7 +42,7 @@ class CardsLargeScreen extends StatelessWidget {
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
           leagueName: "Premier League",
-          startingHour: DateTime.parse("2020-01-28T07:12:50+00:00"),
+          isoDateStartingHour: "2020-02-01T17:00:50+00:00",
           homeTeamName: "Tottenham Hotspur",
           homeTeamLogo:
               "https://upload.wikimedia.org/wikipedia/pt/6/6d/Tottenham_Hotspur.png",

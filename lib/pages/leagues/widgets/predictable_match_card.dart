@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
@@ -58,9 +55,16 @@ Widget predictingArea() {
   return Row(
     children: [
       predictingClubArea(),
-      const SizedBox(width: 10),
-      CustomText(size: 14, color: dark, text: "X"),
-      const SizedBox(width: 10),
+      const SizedBox(width: 20),
+      Image.asset(
+        "assets/match_card/cross.png",
+        height: 30,
+        width: 30,
+        fit: BoxFit.contain,
+        alignment: Alignment.center,
+        color: dark,
+      ),
+      const SizedBox(width: 20),
       predictingClubArea(),
     ],
   );
@@ -71,7 +75,7 @@ class PredictableMatchCard extends StatelessWidget {
     super.key,
     required this.leagueCountry,
     required this.leagueName,
-    required this.startingHour,
+    required this.isoDateStartingHour,
     required this.homeTeamName,
     required this.homeTeamLogo,
     required this.homeTeamPrediction,
@@ -83,7 +87,7 @@ class PredictableMatchCard extends StatelessWidget {
   final String leagueCountry;
   final String leagueName;
 
-  final DateTime startingHour;
+  final String isoDateStartingHour;
 
   final String homeTeamName;
   final String homeTeamLogo;
@@ -95,6 +99,8 @@ class PredictableMatchCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final startingHour = DateTime.parse(isoDateStartingHour);
+
     return Container(
       width: 450,
       height: 150,
@@ -104,35 +110,38 @@ class PredictableMatchCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
       )),
       child: Column(children: [
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // const SizedBox(width: 16),
-            Row(
-              children: [
-                CircleAvatar(
-                    backgroundImage: NetworkImage(leagueCountry), radius: 14),
-                const SizedBox(width: 8),
-                CustomText(size: 14, color: dark, text: leagueName),
-              ],
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Row(
+        SizedBox(
+          width: 300,
+          height: 40,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
-                  const SizedBox(width: 16),
-                  CustomText(
-                    size: 14,
-                    color: dark,
-                    text:
-                        "${DateFormat.LLL().format(startingHour)} ${DateFormat.d().format(startingHour)} - ${DateFormat.Hm().format(startingHour)}",
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(leagueCountry),
+                    radius: 16,
                   ),
+                  const SizedBox(width: 8),
+                  CustomText(size: 14, color: dark, text: leagueName),
                 ],
               ),
-            ),
-          ],
+              Align(
+                alignment: Alignment.center,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 16),
+                    CustomText(
+                      size: 14,
+                      color: dark,
+                      text:
+                          "${DateFormat.LLL().format(startingHour)} ${DateFormat.d().format(startingHour)} - ${DateFormat.Hm().format(startingHour)}",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
