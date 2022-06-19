@@ -33,6 +33,9 @@ int changePrediction(currentPrediction, direction) {
   final CounterFixturePredictionController counterFixturePredictionController =
       Get.put(CounterFixturePredictionController());
 
+  // ignore: todo
+  // TODO: FIND A WAY CONTROL STATE AND SET IT ON THE PREDICTION ITSELF
+
   switch (direction) {
     case "increase":
       return counterFixturePredictionController.increment(currentPrediction);
@@ -47,10 +50,12 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
   return Column(
     children: [
       IconButton(
-        onPressed: (() => changePrediction(
-              currentPrediction is int ? currentPrediction : -1,
-              "increase",
-            )),
+        onPressed: (() => {
+              currentPrediction = changePrediction(
+                currentPrediction is int ? currentPrediction : -1,
+                "increase",
+              )
+            }),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
         splashRadius: 0.1,
@@ -61,10 +66,12 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
         text: currentPrediction is int ? "$currentPrediction" : "-",
       ),
       IconButton(
-        onPressed: (() => changePrediction(
-              currentPrediction is int ? currentPrediction : 0,
-              "decrease",
-            )),
+        onPressed: (() => {
+              currentPrediction = changePrediction(
+                currentPrediction is int ? currentPrediction : 0,
+                "decrease",
+              )
+            }),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
         splashRadius: 0.1,
