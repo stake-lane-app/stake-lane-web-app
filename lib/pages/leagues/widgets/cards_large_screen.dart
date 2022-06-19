@@ -18,13 +18,15 @@ class CardsLargeScreen extends StatelessWidget {
           homeTeamName: "Palmeiras",
           homeTeamLogo:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Palmeiras_logo.svg/640px-Palmeiras_logo.svg.png",
-          homeTeamPrediction: "${2}",
+          homeTeamPrediction: 2,
           awayTeamName: "Internacional",
           awayTeamLogo:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Escudo_do_Sport_Club_Internacional.svg/1200px-Escudo_do_Sport_Club_Internacional.svg.png",
-          awayTeamPrediction: "${0}",
+          awayTeamPrediction: 0,
+          fixtureId: 1,
         ),
         PredictableMatchCard(
+          fixtureId: 2,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2560px-Flag_of_Argentina.svg.png",
           leagueName: "Primera Division",
@@ -37,6 +39,7 @@ class CardsLargeScreen extends StatelessWidget {
               "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Escudo_de_Racing_Club_%282014%29.svg/1200px-Escudo_de_Racing_Club_%282014%29.svg.png",
         ),
         PredictableMatchCard(
+          fixtureId: 3,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
           leagueName: "Premier League",

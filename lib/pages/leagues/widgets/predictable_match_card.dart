@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
+import 'package:get/get.dart';
+import 'package:stake_lane_web_app/controllers/counterController.dart';
 
 Widget club(logo, name) {
   return SizedBox(
@@ -27,11 +29,28 @@ Widget club(logo, name) {
   );
 }
 
-Widget predictingClubArea(previousPrediction) {
+int changePrediction(currentPrediction, direction) {
+  final CounterFixturePredictionController counterFixturePredictionController =
+      Get.put(CounterFixturePredictionController());
+
+  switch (direction) {
+    case "increase":
+      return counterFixturePredictionController.increment(currentPrediction);
+    case "decrease":
+      return counterFixturePredictionController.decrement(currentPrediction);
+  }
+  return 0;
+}
+
+Widget predictingClubArea(fixtureId, previousPrediction) {
+  var currentPrediction = previousPrediction;
   return Column(
     children: [
       IconButton(
-        onPressed: (() => {}),
+        onPressed: (() => changePrediction(
+              currentPrediction is int ? currentPrediction : -1,
+              "increase",
+            )),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
         splashRadius: 0.1,
@@ -39,10 +58,13 @@ Widget predictingClubArea(previousPrediction) {
       CustomText(
         size: 24,
         color: dark,
-        text: previousPrediction is String ? previousPrediction : "-",
+        text: currentPrediction is int ? "$currentPrediction" : "-",
       ),
       IconButton(
-        onPressed: (() => {}),
+        onPressed: (() => changePrediction(
+              currentPrediction is int ? currentPrediction : 0,
+              "decrease",
+            )),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
         splashRadius: 0.1,
@@ -51,10 +73,10 @@ Widget predictingClubArea(previousPrediction) {
   );
 }
 
-Widget predictingArea(homeTeamPrediction, awayTeamPrediction) {
+Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
   return Row(
     children: [
-      predictingClubArea(homeTeamPrediction),
+      predictingClubArea(fixtureId, homeTeamPrediction),
       const SizedBox(width: 20),
       Image.asset(
         "assets/match_card/cross.png",
@@ -65,14 +87,16 @@ Widget predictingArea(homeTeamPrediction, awayTeamPrediction) {
         color: dark,
       ),
       const SizedBox(width: 20),
-      predictingClubArea(awayTeamPrediction),
+      predictingClubArea(fixtureId, awayTeamPrediction),
     ],
   );
 }
 
+// class PredictableMatchCard extends StatefulWidget {
 class PredictableMatchCard extends StatelessWidget {
   const PredictableMatchCard({
     super.key,
+    required this.fixtureId,
     required this.leagueCountry,
     required this.leagueName,
     required this.isoDateStartingHour,
@@ -84,6 +108,7 @@ class PredictableMatchCard extends StatelessWidget {
     this.awayTeamPrediction,
   });
 
+  final int fixtureId;
   final String leagueCountry;
   final String leagueName;
 
@@ -91,11 +116,11 @@ class PredictableMatchCard extends StatelessWidget {
 
   final String homeTeamName;
   final String homeTeamLogo;
-  final String? homeTeamPrediction;
+  final int? homeTeamPrediction;
 
   final String awayTeamName;
   final String awayTeamLogo;
-  final String? awayTeamPrediction;
+  final int? awayTeamPrediction;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +174,7 @@ class PredictableMatchCard extends StatelessWidget {
             const SizedBox(width: 20),
             club(homeTeamLogo, homeTeamName),
             // const SizedBox(width: 16),
-            predictingArea(homeTeamPrediction, awayTeamPrediction),
+            predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction),
             // const SizedBox(width: 16),
             club(awayTeamLogo, awayTeamName),
             const SizedBox(width: 20),
@@ -158,4 +183,11 @@ class PredictableMatchCard extends StatelessWidget {
       ]),
     );
   }
+
+  // State<StatefulWidget> createState() {
+  //   @override
+  //   _State createState() => new _State();
+  //   // TODO: implement createState
+  //   throw UnimplementedError();
+  // }
 }

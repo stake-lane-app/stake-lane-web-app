@@ -7,3 +7,17 @@ class CounterController extends GetxController {
     counter++;
   }
 }
+
+class CounterFixturePredictionController extends GetxController {
+  increment(currentPrediction) {
+    currentPrediction++;
+    return currentPrediction;
+  }
+
+  decrement(currentPrediction) {
+    if (currentPrediction != 0) {
+      currentPrediction--;
+    }
+    return currentPrediction;
+  }
+}
