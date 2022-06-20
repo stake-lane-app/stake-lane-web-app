@@ -99,7 +99,17 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
   );
 }
 
-// class PredictableMatchCard extends StatefulWidget {
+// class MatchCard extends StatefulWidget {
+//   @override
+//   State<StatefulWidget> createState() {
+
+//     // TODO: implement createState
+//     throw UnimplementedError();
+//   }
+
+// }
+
+// class PredictableMatchCard extends State<MatchCard> {
 class PredictableMatchCard extends StatelessWidget {
   const PredictableMatchCard({
     super.key,
@@ -137,7 +147,8 @@ class PredictableMatchCard extends StatelessWidget {
       width: 450,
       height: 170,
       margin: const EdgeInsets.only(
-        bottom: 16,
+        bottom: 10,
+        top: 8,
         left: 4,
         right: 4,
       ),
@@ -198,11 +209,4 @@ class PredictableMatchCard extends StatelessWidget {
       ]),
     );
   }
-
-  // State<StatefulWidget> createState() {
-  //   @override
-  //   _State createState() => new _State();
-  //   // TODO: implement createState
-  //   throw UnimplementedError();
-  // }
 }

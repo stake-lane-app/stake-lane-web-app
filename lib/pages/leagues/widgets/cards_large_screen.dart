@@ -50,6 +50,32 @@ class CardsLargeScreen extends StatelessWidget {
           awayTeamName: "Crystal Palace F.C.",
           awayTeamLogo:
               "https://upload.wikimedia.org/wikipedia/pt/c/c1/Crystal_Palace_FC_logo.png",
+        ),
+        PredictableMatchCard(
+          fixtureId: 4,
+          leagueCountry:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
+          leagueName: "Premier League",
+          isoDateStartingHour: "2020-02-01T17:00:50+00:00",
+          homeTeamName: "Tottenham Hotspur",
+          homeTeamLogo:
+              "https://upload.wikimedia.org/wikipedia/pt/6/6d/Tottenham_Hotspur.png",
+          awayTeamName: "Crystal Palace F.C.",
+          awayTeamLogo:
+              "https://upload.wikimedia.org/wikipedia/pt/c/c1/Crystal_Palace_FC_logo.png",
+        ),
+        PredictableMatchCard(
+          fixtureId: 5,
+          leagueCountry:
+              "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
+          leagueName: "Premier League",
+          isoDateStartingHour: "2020-02-01T17:00:50+00:00",
+          homeTeamName: "Tottenham Hotspur",
+          homeTeamLogo:
+              "https://upload.wikimedia.org/wikipedia/pt/6/6d/Tottenham_Hotspur.png",
+          awayTeamName: "Crystal Palace F.C.",
+          awayTeamLogo:
+              "https://upload.wikimedia.org/wikipedia/pt/c/c1/Crystal_Palace_FC_logo.png",
         )
       ],
     );

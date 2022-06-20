@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/controllers/menu_controller.dart';
 import 'package:stake_lane_web_app/controllers/navigation_controller.dart';
 import 'package:stake_lane_web_app/layout.dart';
@@ -28,7 +27,7 @@ class StakeLaneApp extends StatelessWidget {
             TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder()
           }),
-          primaryColor: Colors.green),
+          primaryColor: Colors.white),
       home: SiteLayout(),
     );
   }
