@@ -21,7 +21,7 @@ class StakeLaneApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Stake Lane",
       theme: ThemeData(
-          scaffoldBackgroundColor: light,
+          scaffoldBackgroundColor: Colors.white,
           textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
               .apply(bodyColor: Colors.black),
           pageTransitionsTheme: const PageTransitionsTheme(builders: {

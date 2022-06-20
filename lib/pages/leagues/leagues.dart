@@ -12,20 +12,6 @@ class LeaguesPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Obx(() => Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      top: ResponsiveWidget.isSmallScreen(context) ? 56 : 18,
-                      left: 6),
-                  child: CustomText(
-                    text: menuController.activeItem.value,
-                    size: 18,
-                    weight: FontWeight.normal,
-                  ),
-                )
-              ],
-            )),
         Expanded(
           child: ListView(
             scrollDirection: Axis.vertical,

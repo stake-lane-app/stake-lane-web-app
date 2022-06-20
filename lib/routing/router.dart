@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/friends/friends.dart';
 import 'package:stake_lane_web_app/pages/leagues/leagues.dart';

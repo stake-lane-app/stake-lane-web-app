@@ -58,7 +58,7 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
             }),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
-        splashRadius: 0.1,
+        // splashRadius: 1,
       ),
       CustomText(
         size: 24,
@@ -74,7 +74,7 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
             }),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
-        splashRadius: 0.1,
+        // splashRadius: 0.1,
       )
     ],
   );
@@ -135,10 +135,18 @@ class PredictableMatchCard extends StatelessWidget {
 
     return Container(
       width: 450,
-      height: 150,
-      margin: const EdgeInsets.only(bottom: 16),
+      height: 170,
+      margin: const EdgeInsets.only(
+        bottom: 16,
+        left: 4,
+        right: 4,
+      ),
       decoration: (BoxDecoration(
-        color: Colors.white,
+        border: Border.all(
+          width: 1,
+          color: Colors.grey,
+        ),
+        // color: Colors.grey[100],
         borderRadius: BorderRadius.circular(30),
       )),
       child: Column(children: [
