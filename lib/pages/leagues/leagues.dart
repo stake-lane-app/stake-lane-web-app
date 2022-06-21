@@ -4,6 +4,27 @@ import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
 
+Widget bottomBarItem(icon, subtitle) {
+  return SizedBox(
+    width: 90,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          icon,
+          color: dark,
+        ),
+        CustomText(
+          size: 12,
+          color: dark,
+          text: subtitle,
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
+}
+
 Widget smallScreenBottomBar(context, width) {
   if (ResponsiveWidget.isLargeScreen(context)) {
     return Container();
@@ -27,60 +48,9 @@ Widget smallScreenBottomBar(context, width) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Column(
-            children: [
-              IconButton(
-                splashRadius: 0.01,
-                icon: Icon(
-                  Icons.add,
-                  color: dark,
-                ),
-                onPressed: () {},
-              ),
-              CustomText(
-                size: 12,
-                color: dark,
-                text: "Add a League",
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              IconButton(
-                splashRadius: 0.01,
-                icon: Icon(
-                  Icons.filter_alt,
-                  color: dark,
-                ),
-                onPressed: () {},
-              ),
-              CustomText(
-                size: 12,
-                color: dark,
-                text: "Filter",
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              IconButton(
-                splashRadius: 0.01,
-                icon: Icon(
-                  Icons.view_timeline_outlined,
-                  color: dark,
-                ),
-                onPressed: () {},
-              ),
-              CustomText(
-                size: 12,
-                color: dark,
-                text: "Past Fixtures",
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+          bottomBarItem(Icons.add, "Add League"),
+          bottomBarItem(Icons.filter_alt, "Filter"),
+          bottomBarItem(Icons.view_timeline_outlined, "Past Dates"),
         ],
       ),
     ),
