@@ -8,14 +8,12 @@ class LeaguesPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         Column(
           children: [
             TopBar(activeButton: "Leagues"),
             Expanded(
-              // flex: 0,
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
                 scrollDirection: Axis.vertical,
