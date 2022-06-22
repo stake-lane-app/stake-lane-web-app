@@ -1,32 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:stake_lane_web_app/widgets/bars/top_bar.dart';
+import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:stake_lane_web_app/controllers/controllers.dart';
-import 'package:stake_lane_web_app/helpers/responsiveness.dart';
-import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
 class PoolsPageView extends StatelessWidget {
   const PoolsPageView({super.key});
 
   @override
-  @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Obx(() => Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      top: ResponsiveWidget.isSmallScreen(context) ? 56 : 18,
-                      left: 6),
-                  child: CustomText(
-                    text: menuController.activeItem.value,
-                    size: 18,
-                    weight: FontWeight.normal,
-                  ),
-                )
+        Column(
+          children: [
+            TopBar(activeButton: "Pools"),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.only(top: 0),
+                scrollDirection: Axis.vertical,
+                children: const [],
+              ),
+            ),
+            BottomBar(
+              bottomBarItems: [
+                bottomBarItem(Icons.group_add, "Create Pools"),
+                bottomBarItem(Icons.groups_rounded, "My Pools"),
+                // NOT AT MVP
+                // bottomBarItem(Icons.view_timeline_outlined, "Public Pools"),
               ],
-            ))
+            )
+          ],
+        ),
       ],
     );
   }

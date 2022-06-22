@@ -21,7 +21,7 @@ Widget bellRinging() {
       height: 12,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: active,
+          color: activeHotColor,
           borderRadius: BorderRadius.circular(30),
           border: Border.all(color: light, width: 2)),
     ),
@@ -96,7 +96,7 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 key.currentState?.openDrawer();
               }),
       title: Row(children: [
-        CustomText(text: "Stake Lane", color: dark, size: 14),
+        CustomText(text: "Stake Lane", color: dark, size: 16),
         Expanded(child: Container()),
         const SizedBox(width: 10),
         personalArea(context),
