@@ -21,7 +21,7 @@ Widget bellRinging() {
       height: 12,
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: active,
+          color: activeHotColor,
           borderRadius: BorderRadius.circular(30),
           border: Border.all(color: light, width: 2)),
     ),

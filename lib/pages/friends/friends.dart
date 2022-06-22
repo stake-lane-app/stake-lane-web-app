@@ -1,31 +1,32 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:get/get.dart';
 import 'package:stake_lane_web_app/controllers/controllers.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
+import 'package:stake_lane_web_app/widgets/top_bar.dart';
 
 class FriendsPageView extends StatelessWidget {
   const FriendsPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    // final width = MediaQuery.of(context).size.width;
+    return Stack(
       children: [
-        Obx(() => Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      top: ResponsiveWidget.isSmallScreen(context) ? 56 : 18,
-                      left: 6),
-                  child: CustomText(
-                    text: menuController.activeItem.value,
-                    size: 18,
-                    weight: FontWeight.normal,
-                  ),
-                )
-              ],
-            ))
+        Column(
+          children: [
+            TopBar(activeButton: "Friends"),
+            Expanded(
+              // flex: 0,
+              child: ListView(
+                padding: const EdgeInsets.only(top: 0),
+                scrollDirection: Axis.vertical,
+                children: const [],
+              ),
+            ),
+            // smallScreenBottomBar(context, width)
+          ],
+        ),
       ],
     );
   }

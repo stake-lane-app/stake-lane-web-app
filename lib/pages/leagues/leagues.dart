@@ -3,6 +3,7 @@ import 'package:stake_lane_web_app/pages/leagues/widgets/cards_large_screen.dart
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
+import 'package:stake_lane_web_app/widgets/top_bar.dart';
 
 Widget bottomBarItem(icon, subtitle) {
   return SizedBox(
@@ -56,61 +57,6 @@ Widget smallScreenBottomBar(context, width) {
   );
 }
 
-Widget topBarItem(icon, subtitle) {
-  return SizedBox(
-    width: 110,
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          icon,
-          color: dark,
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        CustomText(
-          size: 16,
-          color: dark,
-          text: subtitle,
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
-  );
-}
-
-Widget smallScreenTopBar(context, width) {
-  if (ResponsiveWidget.isLargeScreen(context)) {
-    return Container();
-  }
-
-  return Positioned(
-    top: 0,
-    child: Container(
-      width: width,
-      height: 65,
-      decoration: (BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: dark.withOpacity(.1),
-            width: 1.0,
-          ),
-        ),
-        color: Colors.grey[100],
-      )),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          topBarItem(Icons.group, "Pools"),
-          topBarItem(Icons.stadium, "Leagues"),
-          topBarItem(Icons.person_add, "Friends"),
-        ],
-      ),
-    ),
-  );
-}
-
 class LeaguesPageView extends StatelessWidget {
   const LeaguesPageView({super.key});
 
@@ -121,7 +67,7 @@ class LeaguesPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            smallScreenTopBar(context, width),
+            TopBar(activeButton: "Leagues"),
             Expanded(
               // flex: 0,
               child: ListView(
