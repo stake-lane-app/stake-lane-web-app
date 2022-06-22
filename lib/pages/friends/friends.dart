@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:stake_lane_web_app/widgets/custom_text.dart';
-import 'package:get/get.dart';
-import 'package:stake_lane_web_app/controllers/controllers.dart';
-import 'package:stake_lane_web_app/helpers/responsiveness.dart';
-import 'package:stake_lane_web_app/widgets/top_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:stake_lane_web_app/widgets/bars/top_bar.dart';
+import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
 class FriendsPageView extends StatelessWidget {
   const FriendsPageView({super.key});
@@ -24,7 +21,12 @@ class FriendsPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-            // smallScreenBottomBar(context, width)
+            BottomBar(
+              bottomBarItems: [
+                bottomBarItem(Icons.person_rounded, "Close Stakers"),
+                bottomBarItem(Icons.person_search_sharp, "Find Stakers"),
+              ],
+            )
           ],
         ),
       ],
