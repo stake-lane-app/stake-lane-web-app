@@ -15,25 +15,31 @@ Widget topBarItem(icon, subtitle, active) {
   }
 
   return SizedBox(
-    width: 110,
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          icon,
-          color: color,
-        ),
-        const SizedBox(
-          width: 4,
-        ),
-        CustomText(
-          size: fontSize,
-          color: color,
-          text: subtitle,
-          textAlign: TextAlign.center,
-          weight: weight,
-        ),
-      ],
+    width: 150,
+    height: 55,
+    child: MaterialButton(
+      onPressed: () {
+
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            color: color,
+          ),
+          const SizedBox(
+            width: 4,
+          ),
+          CustomText(
+            size: fontSize,
+            color: color,
+            text: subtitle,
+            textAlign: TextAlign.center,
+            weight: weight,
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -64,7 +70,7 @@ class TopBar extends StatelessWidget {
       top: 0,
       child: Container(
         width: width,
-        height: 65,
+        height: 55,
         decoration: (BoxDecoration(
           border: Border(
             bottom: BorderSide(
