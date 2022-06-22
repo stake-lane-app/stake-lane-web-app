@@ -23,8 +23,8 @@ class FriendsPageView extends StatelessWidget {
             ),
             BottomBar(
               bottomBarItems: [
-                bottomBarItem(Icons.person_rounded, "Close Stakers"),
-                bottomBarItem(Icons.person_search_sharp, "Find Stakers"),
+                bottomBarItem(Icons.person_rounded, "Friends List"),
+                bottomBarItem(Icons.person_search_sharp, "Find Friends"),
               ],
             )
           ],

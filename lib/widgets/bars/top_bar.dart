@@ -6,16 +6,16 @@ import 'package:stake_lane_web_app/helpers/responsiveness.dart';
 Widget topBarItem(icon, subtitle, active) {
   Color color = dark;
   FontWeight weight = FontWeight.normal;
-  double fontSize = 16.0;
+  double fontSize = 14.0;
 
   if (active) {
     color = activeColdColor;
     weight = FontWeight.bold;
-    fontSize = 18.0;
+    fontSize = 16.0;
   }
 
   return SizedBox(
-    width: 150,
+    width: 130,
     height: 55,
     child: MaterialButton(
       onPressed: () {
@@ -29,7 +29,7 @@ Widget topBarItem(icon, subtitle, active) {
             color: color,
           ),
           const SizedBox(
-            width: 4,
+            width: 2,
           ),
           CustomText(
             size: fontSize,
@@ -58,7 +58,7 @@ class TopBar extends StatelessWidget {
     List<Widget> topBarItems = [
       topBarItem(Icons.group, "Pools", activeButton == "Pools"),
       topBarItem(Icons.stadium, "Leagues", activeButton == "Leagues"),
-      topBarItem(Icons.person_add, "Friends", activeButton == "Friends"),
+      topBarItem(Icons.handshake, "Friends", activeButton == "Friends"),
     ];
 
     final width = MediaQuery.of(context).size.width;
