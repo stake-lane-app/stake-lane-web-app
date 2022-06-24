@@ -65,7 +65,6 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> {
-  String activeee = "Leagues";
   @override
   void setState(VoidCallback fn) {
     super.setState(fn);
