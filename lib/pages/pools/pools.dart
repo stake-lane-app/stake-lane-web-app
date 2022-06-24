@@ -12,8 +12,7 @@ class PoolsPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            const SuperTopBar(),
-            // TTopBar(activeButton: "Pools"),
+            TopBar(activeButton: "Pools"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
@@ -25,8 +24,9 @@ class PoolsPageView extends StatelessWidget {
               bottomBarItems: [
                 bottomBarItem(Icons.group_add, "Create Pools"),
                 bottomBarItem(Icons.groups_rounded, "My Pools"),
+                
                 // NOT AT MVP
-                // bottomBarItem(Icons.view_timeline_outlined, "Public Pools"),
+                bottomBarItem(Icons.public, "Public Pools"),
               ],
             )
           ],
