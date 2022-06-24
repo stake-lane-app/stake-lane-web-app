@@ -11,7 +11,8 @@ class FriendsPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            TopBar(activeButton: "Friends"),
+            const SuperTopBar(),
+            // TTopBar(activeButton: "Friends"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),

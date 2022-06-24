@@ -12,7 +12,8 @@ class LeaguesPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            TopBar(activeButton: "Leagues"),
+            const SuperTopBar(),
+            // TopBar(activeButton: "Leagues"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),

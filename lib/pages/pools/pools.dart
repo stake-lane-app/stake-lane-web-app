@@ -12,7 +12,8 @@ class PoolsPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            TopBar(activeButton: "Pools"),
+            const SuperTopBar(),
+            // TTopBar(activeButton: "Pools"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
