@@ -4,12 +4,12 @@ import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
 
-Widget topBarItem(setState, destination, icon, subtitle, active) {
+Widget topBarItem(setState, destination, icon, subtitle, widget) {
   Color color = dark;
   FontWeight weight = FontWeight.normal;
   double fontSize = 14.0;
 
-  if (active) {
+  if (widget.activeButton == destination) {
     color = activeColdColor;
     weight = FontWeight.bold;
     fontSize = 16.0;
@@ -20,10 +20,15 @@ Widget topBarItem(setState, destination, icon, subtitle, active) {
     height: 55,
     child: MaterialButton(
       onPressed: () {
-        setState(() => {
-          // TODO: If already active, doesnt do anything
-          navigationController.navigateTo(destination)
-        });
+        setState(
+          () => {
+            if (widget.activeButton != destination)
+              {
+                widget.activeButton = destination,
+                navigationController.navigateTo(destination),
+              },
+          },
+        );
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -74,12 +79,9 @@ class _TopBarState extends State<TopBar> {
     }
 
     List<Widget> topBarItems = [
-      topBarItem(setState, "Pools", Icons.group, "Pools",
-          widget.activeButton == "Pools"),
-      topBarItem(setState, "Leagues", Icons.stadium, "Leagues",
-          widget.activeButton == "Leagues"),
-      topBarItem(setState, "Friends", Icons.handshake, "Friends",
-          widget.activeButton == "Friends"),
+      topBarItem(setState, "Pools", Icons.group, "Pools", widget),
+      topBarItem(setState, "Leagues", Icons.stadium, "Leagues", widget),
+      topBarItem(setState, "Friends", Icons.handshake, "Friends", widget),
     ];
 
     return Positioned(
