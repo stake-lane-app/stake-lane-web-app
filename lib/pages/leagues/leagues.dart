@@ -1,6 +1,5 @@
-import 'package:stake_lane_web_app/pages/leagues/widgets/cards_large_screen.dart';
+import 'package:stake_lane_web_app/pages/leagues/widgets/fixture_cards.dart';
 import 'package:flutter/material.dart';
-import 'package:stake_lane_web_app/widgets/bars/top_bar.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
 class LeaguesPageView extends StatelessWidget {
@@ -16,16 +15,21 @@ class LeaguesPageView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
                 scrollDirection: Axis.vertical,
-                children: const [CardsLargeScreen()],
+                children: const [FixtureCards()],
               ),
             ),
             BottomBar(
               bottomBarItems: [
-                bottomBarItem(Icons.add, "Add League"),
-                bottomBarItem(Icons.filter_alt, "Filter"),
-                bottomBarItem(Icons.view_timeline_outlined, "Past Dates"),
+                bottomBarItem(Icons.view_timeline_outlined, "Past"),
+                bottomBarItem(Icons.sports_soccer, "Fixtures"),
+                
+                // Edit will include show current user's league, filtering, add/remove
+                bottomBarItem(Icons.dashboard_customize, "Edit"),
+                
+                // bottomBarItem(Icons.filter_alt, "Filter"),
+                // bottomBarItem(Icons.add, "Add"),
               ],
-            )
+            ),
           ],
         ),
       ],

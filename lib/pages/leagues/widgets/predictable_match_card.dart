@@ -84,7 +84,7 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
   return Row(
     children: [
       predictingClubArea(fixtureId, homeTeamPrediction),
-      const SizedBox(width: 20),
+      const SizedBox(width: 10),
       Image.asset(
         "assets/match_card/cross.png",
         height: 30,
@@ -93,7 +93,7 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
         alignment: Alignment.center,
         color: dark,
       ),
-      const SizedBox(width: 20),
+      const SizedBox(width: 10),
       predictingClubArea(fixtureId, awayTeamPrediction),
     ],
   );

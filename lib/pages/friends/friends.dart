@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stake_lane_web_app/widgets/bars/top_bar.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
 class FriendsPageView extends StatelessWidget {
@@ -20,10 +19,10 @@ class FriendsPageView extends StatelessWidget {
             ),
             BottomBar(
               bottomBarItems: [
-                bottomBarItem(Icons.person_rounded, "Friends List"),
-                bottomBarItem(Icons.person_search_sharp, "Find Friends"),
+                bottomBarItem(Icons.person_rounded, "List"),
+                bottomBarItem(Icons.person_search_sharp, "Find"),
               ],
-            )
+            ),
           ],
         ),
       ],

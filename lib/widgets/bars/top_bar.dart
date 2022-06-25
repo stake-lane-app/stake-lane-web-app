@@ -92,7 +92,7 @@ class _TopBarState extends State<TopBar> {
           border: Border(
             bottom: BorderSide(
               color: dark.withOpacity(.1),
-              width: 1.0,
+              width: 2,
             ),
           ),
           color: Colors.grey[100],

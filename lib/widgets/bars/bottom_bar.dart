@@ -5,7 +5,7 @@ import 'package:stake_lane_web_app/helpers/responsiveness.dart';
 
 Widget bottomBarItem(icon, subtitle) {
   return SizedBox(
-    width: 130,
+    width: 90,
     height: 55,
     child: MaterialButton(
       onPressed: () {},
@@ -17,7 +17,7 @@ Widget bottomBarItem(icon, subtitle) {
             color: dark,
           ),
           CustomText(
-            size: 14,
+            size: 12,
             color: dark,
             text: subtitle,
             textAlign: TextAlign.center,
@@ -42,23 +42,25 @@ class BottomBar extends StatelessWidget {
       return Container();
     }
 
-    return Positioned(
-      bottom: 0,
-      child: Container(
-        width: width,
-        height: 55,
-        decoration: (BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: dark.withOpacity(.1),
-              width: 1.0,
+    return SafeArea(
+      child: Positioned(
+        bottom: 0,
+        child: Container(
+          width: width,
+          height: 55,
+          decoration: (BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: dark.withOpacity(.1),
+                width: 2.0,
+              ),
             ),
+            color: Colors.grey[100],
+          )),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: bottomBarItems,
           ),
-          color: Colors.grey[100],
-        )),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: bottomBarItems,
         ),
       ),
     );

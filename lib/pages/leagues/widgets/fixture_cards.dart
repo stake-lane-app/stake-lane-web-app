@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/predictable_match_card.dart';
 
-class CardsLargeScreen extends StatelessWidget {
-  const CardsLargeScreen({super.key});
+class FixtureCards extends StatelessWidget {
+  const FixtureCards({super.key});
 
   @override
   Widget build(BuildContext context) {
