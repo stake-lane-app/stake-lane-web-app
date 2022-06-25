@@ -136,12 +136,6 @@ Widget bottomBarItem(icon, subtitle) {
   FontWeight weight = FontWeight.normal;
   double fontSize = 12.0;
 
-  // if (widget.activeButton == destination) {
-  color = activeColdColor;
-  weight = FontWeight.bold;
-  fontSize = 13.0;
-  // }
-
   return SizedBox(
     width: 100,
     height: 55,

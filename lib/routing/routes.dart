@@ -6,8 +6,6 @@ const LeagueEditPageRoute = "LeagueEdit";
 
 List sideMenuItems = [
   LeaguePageRoute,
-  LeaguePastFixturesPageRoute,
-  LeagueEditPageRoute,
   PoolPageRoute,
   FriendsPageRoute,
 ];
