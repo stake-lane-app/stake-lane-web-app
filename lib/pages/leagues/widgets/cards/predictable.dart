@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
-import 'package:get/get.dart';
-import 'package:stake_lane_web_app/controllers/counterController.dart';
 
 Widget club(logo, name) {
   return SizedBox(
@@ -29,33 +27,50 @@ Widget club(logo, name) {
   );
 }
 
-int changePrediction(currentPrediction, direction) {
-  final CounterFixturePredictionController counterFixturePredictionController =
-      Get.put(CounterFixturePredictionController());
-
-  // ignore: todo
-  // TODO: FIND A WAY CONTROL STATE AND SET IT ON THE PREDICTION ITSELF
-
+int calculatePrediction(currentPrediction, direction) {
   switch (direction) {
     case "increase":
-      return counterFixturePredictionController.increment(currentPrediction);
+      return currentPrediction + 1;
     case "decrease":
-      return counterFixturePredictionController.decrement(currentPrediction);
+      if (currentPrediction != 0) {
+        return currentPrediction - 1;
+      }
   }
   return 0;
 }
 
-Widget predictingClubArea(fixtureId, previousPrediction) {
+void changePrediction(
+    currentPrediction, setState, widget, clubReference, direction) {
+  if (currentPrediction is! int) {
+    setState(
+      () => {
+        widget.homeTeamPrediction = 0,
+        widget.awayTeamPrediction = 0,
+      },
+    );
+  }
+
+  currentPrediction = calculatePrediction(
+    currentPrediction,
+    direction,
+  );
+  setState(
+    () => {
+      if (clubReference == "home")
+        {widget.homeTeamPrediction = currentPrediction}
+      else
+        {widget.awayTeamPrediction = currentPrediction}
+    },
+  );
+}
+
+Widget predictingClubArea(widget, setState, previousPrediction, clubReference) {
   var currentPrediction = previousPrediction;
   return Column(
     children: [
       IconButton(
-        onPressed: (() => {
-              currentPrediction = changePrediction(
-                currentPrediction is int ? currentPrediction : -1,
-                "increase",
-              )
-            }),
+        onPressed: (() => changePrediction(
+            currentPrediction, setState, widget, clubReference, "increase")),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
         // splashRadius: 1,
@@ -66,12 +81,8 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
         text: currentPrediction is int ? "$currentPrediction" : "-",
       ),
       IconButton(
-        onPressed: (() => {
-              currentPrediction = changePrediction(
-                currentPrediction is int ? currentPrediction : 0,
-                "decrease",
-              )
-            }),
+        onPressed: (() => changePrediction(
+            currentPrediction, setState, widget, clubReference, "decrease")),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
         // splashRadius: 0.1,
@@ -80,10 +91,15 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
   );
 }
 
-Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
+Widget predictingArea(widget, setState) {
   return Row(
     children: [
-      predictingClubArea(fixtureId, homeTeamPrediction),
+      predictingClubArea(
+        widget,
+        setState,
+        widget.homeTeamPrediction,
+        "home",
+      ),
       const SizedBox(width: 10),
       Image.asset(
         "assets/match_card/cross.png",
@@ -94,24 +110,18 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
         color: dark,
       ),
       const SizedBox(width: 10),
-      predictingClubArea(fixtureId, awayTeamPrediction),
+      predictingClubArea(
+        widget,
+        setState,
+        widget.awayTeamPrediction,
+        "away",
+      ),
     ],
   );
 }
 
-// class MatchCard extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-
-//     // TODO: implement createState
-//     throw UnimplementedError();
-//   }
-
-// }
-
-// class PredictableMatchCard extends State<MatchCard> {
-class PredictableMatchCard extends StatelessWidget {
-  const PredictableMatchCard({
+class MatchCard extends StatefulWidget {
+  MatchCard({
     super.key,
     required this.fixtureId,
     required this.leagueCountry,
@@ -133,15 +143,25 @@ class PredictableMatchCard extends StatelessWidget {
 
   final String homeTeamName;
   final String homeTeamLogo;
-  final int? homeTeamPrediction;
+  int? homeTeamPrediction;
 
   final String awayTeamName;
   final String awayTeamLogo;
-  final int? awayTeamPrediction;
+  int? awayTeamPrediction;
+
+  @override
+  State<MatchCard> createState() => _MatchCardState();
+}
+
+class _MatchCardState extends State<MatchCard> {
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final startingHour = DateTime.parse(isoDateStartingHour);
+    final startingHour = DateTime.parse(widget.isoDateStartingHour);
 
     return Container(
       width: 450,
@@ -170,11 +190,11 @@ class PredictableMatchCard extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(leagueCountry),
+                    backgroundImage: NetworkImage(widget.leagueCountry),
                     radius: 16,
                   ),
                   const SizedBox(width: 8),
-                  CustomText(size: 14, color: dark, text: leagueName),
+                  CustomText(size: 14, color: dark, text: widget.leagueName),
                 ],
               ),
               Align(
@@ -198,11 +218,15 @@ class PredictableMatchCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 20),
-            club(homeTeamLogo, homeTeamName),
-            // const SizedBox(width: 16),
-            predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction),
-            // const SizedBox(width: 16),
-            club(awayTeamLogo, awayTeamName),
+            club(
+              widget.homeTeamLogo,
+              widget.homeTeamName,
+            ),
+            predictingArea(widget, setState),
+            club(
+              widget.awayTeamLogo,
+              widget.awayTeamName,
+            ),
             const SizedBox(width: 20),
           ],
         )

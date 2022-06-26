@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stake_lane_web_app/pages/leagues/widgets/predictable_match_card.dart';
+import 'package:stake_lane_web_app/pages/leagues/widgets/cards/predictable.dart';
 
 class FixtureCards extends StatelessWidget {
   const FixtureCards({super.key});
@@ -9,8 +9,8 @@ class FixtureCards extends StatelessWidget {
     // double width = MediaQuery.of(context).size.width;
 
     return Column(
-      children: const [
-        PredictableMatchCard(
+      children: [
+        MatchCard(
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png",
           leagueName: "Brasileirão",
@@ -25,7 +25,7 @@ class FixtureCards extends StatelessWidget {
           awayTeamPrediction: 0,
           fixtureId: 1,
         ),
-        PredictableMatchCard(
+        MatchCard(
           fixtureId: 2,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2560px-Flag_of_Argentina.svg.png",
@@ -38,7 +38,7 @@ class FixtureCards extends StatelessWidget {
           awayTeamLogo:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Escudo_de_Racing_Club_%282014%29.svg/1200px-Escudo_de_Racing_Club_%282014%29.svg.png",
         ),
-        PredictableMatchCard(
+        MatchCard(
           fixtureId: 3,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
@@ -51,7 +51,7 @@ class FixtureCards extends StatelessWidget {
           awayTeamLogo:
               "https://upload.wikimedia.org/wikipedia/pt/c/c1/Crystal_Palace_FC_logo.png",
         ),
-        PredictableMatchCard(
+        MatchCard(
           fixtureId: 4,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
@@ -64,7 +64,7 @@ class FixtureCards extends StatelessWidget {
           awayTeamLogo:
               "https://upload.wikimedia.org/wikipedia/pt/c/c1/Crystal_Palace_FC_logo.png",
         ),
-        PredictableMatchCard(
+        MatchCard(
           fixtureId: 5,
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/1200px-Flag_of_England.svg.png",
