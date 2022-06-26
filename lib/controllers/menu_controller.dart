@@ -24,7 +24,7 @@ class MenuController extends GetxController {
     switch (itemName) {
       case LeaguePageRoute:
         return _customIcon(Icons.stadium, itemName);
-      case PoolPageRoute:
+      case PoolsPageRoute:
         return _customIcon(Icons.group, itemName);
       case FriendsPageRoute:
         return _customIcon(Icons.person_add, itemName);

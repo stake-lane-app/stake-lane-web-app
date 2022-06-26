@@ -5,6 +5,8 @@ import 'package:stake_lane_web_app/pages/leagues/leagues.dart';
 import 'package:stake_lane_web_app/pages/leagues/edit.dart';
 import 'package:stake_lane_web_app/pages/leagues/past_dates.dart';
 import 'package:stake_lane_web_app/pages/pools/pools.dart';
+import 'package:stake_lane_web_app/pages/pools/create.dart';
+import 'package:stake_lane_web_app/pages/pools/public.dart';
 import 'package:stake_lane_web_app/routing/routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -16,8 +18,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case LeagueEditPageRoute:
       return _getPageRoute(const LeagueEditPageView());
 
-    case PoolPageRoute:
+    case PoolsPageRoute:
       return _getPageRoute(const PoolsPageView());
+    case PoolsCreatePageRoute:
+      return _getPageRoute(const PoolsCreatePageView());
+    case PoolsPublicPageRoute:
+      return _getPageRoute(const PoolPublicPageRoute());
+
 
     case FriendsPageRoute:
       return _getPageRoute(const FriendsPageView());

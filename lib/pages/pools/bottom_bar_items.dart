@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:stake_lane_web_app/routing/routes.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
 List<BottomRawItem> bottomBarItems() {
   BottomRawItem pastItem = BottomRawItem(
-    icon: Icons.view_timeline_outlined,
-    subtitle: "Past",
-    destination: "LeaguePastFixtures",
+    icon: Icons.group_add,
+    subtitle: "Create",
+    destination: PoolsCreatePageRoute,
   );
 
   BottomRawItem fixtureItem = BottomRawItem(
-    icon: Icons.sports_soccer,
-    subtitle: "Fixtures",
-    destination: "Leagues",
+    icon: Icons.group_rounded,
+    subtitle: "My Pools",
+    destination: PoolsPageRoute,
   );
 
   BottomRawItem editItem = BottomRawItem(
-    icon: Icons.dashboard_customize,
-    subtitle: "Edit",
-    destination: "LeagueEdit",
+    icon: Icons.public,
+    subtitle: "Public",
+    destination: PoolsPublicPageRoute,
   );
 
   return [

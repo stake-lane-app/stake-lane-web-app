@@ -79,7 +79,7 @@ class _TopBarState extends State<TopBar> {
     }
 
     List<Widget> topBarItems = [
-      topBarItem(setState, PoolPageRoute, Icons.group, "Pools", widget),
+      topBarItem(setState, PoolsPageRoute, Icons.group, "Pools", widget),
       topBarItem(setState, LeaguePageRoute, Icons.stadium, "Leagues", widget),
       topBarItem(setState, FriendsPageRoute, Icons.handshake, "Friends", widget),
     ];
