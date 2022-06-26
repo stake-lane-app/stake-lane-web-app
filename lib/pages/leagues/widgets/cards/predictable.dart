@@ -30,17 +30,11 @@ Widget club(logo, name) {
 }
 
 int changePrediction(currentPrediction, direction) {
-  final CounterFixturePredictionController counterFixturePredictionController =
-      Get.put(CounterFixturePredictionController());
-
-  // ignore: todo
-  // TODO: FIND A WAY CONTROL STATE AND SET IT ON THE PREDICTION ITSELF
-
   switch (direction) {
     case "increase":
-      return counterFixturePredictionController.increment(currentPrediction);
+      return 0;
     case "decrease":
-      return counterFixturePredictionController.decrement(currentPrediction);
+      return 0;
   }
   return 0;
 }
@@ -99,19 +93,8 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
   );
 }
 
-// class MatchCard extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-
-//     // TODO: implement createState
-//     throw UnimplementedError();
-//   }
-
-// }
-
-// class PredictableMatchCard extends State<MatchCard> {
-class PredictableMatchCard extends StatelessWidget {
-  const PredictableMatchCard({
+class MatchCard extends StatefulWidget {
+  const MatchCard({
     super.key,
     required this.fixtureId,
     required this.leagueCountry,
@@ -140,8 +123,18 @@ class PredictableMatchCard extends StatelessWidget {
   final int? awayTeamPrediction;
 
   @override
+  State<MatchCard> createState() => _MatchCardState();
+}
+
+class _MatchCardState extends State<MatchCard> {
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final startingHour = DateTime.parse(isoDateStartingHour);
+    final startingHour = DateTime.parse(widget.isoDateStartingHour);
 
     return Container(
       width: 450,
@@ -170,11 +163,11 @@ class PredictableMatchCard extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(leagueCountry),
+                    backgroundImage: NetworkImage(widget.leagueCountry),
                     radius: 16,
                   ),
                   const SizedBox(width: 8),
-                  CustomText(size: 14, color: dark, text: leagueName),
+                  CustomText(size: 14, color: dark, text: widget.leagueName),
                 ],
               ),
               Align(
@@ -198,11 +191,19 @@ class PredictableMatchCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 20),
-            club(homeTeamLogo, homeTeamName),
-            // const SizedBox(width: 16),
-            predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction),
-            // const SizedBox(width: 16),
-            club(awayTeamLogo, awayTeamName),
+            club(
+              widget.homeTeamLogo,
+              widget.homeTeamName,
+            ),
+            predictingArea(
+              widget.fixtureId,
+              widget.homeTeamPrediction,
+              widget.awayTeamPrediction,
+            ),
+            club(
+              widget.awayTeamLogo,
+              widget.awayTeamName,
+            ),
             const SizedBox(width: 20),
           ],
         )
