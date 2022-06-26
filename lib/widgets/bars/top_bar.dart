@@ -3,6 +3,7 @@ import 'package:stake_lane_web_app/controllers/controllers.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
+import 'package:stake_lane_web_app/routing/routes.dart';
 
 Widget topBarItem(setState, destination, icon, subtitle, widget) {
   Color color = dark;
@@ -78,9 +79,9 @@ class _TopBarState extends State<TopBar> {
     }
 
     List<Widget> topBarItems = [
-      topBarItem(setState, "Pools", Icons.group, "Pools", widget),
-      topBarItem(setState, "Leagues", Icons.stadium, "Leagues", widget),
-      topBarItem(setState, "Friends", Icons.handshake, "Friends", widget),
+      topBarItem(setState, PoolPageRoute, Icons.group, "Pools", widget),
+      topBarItem(setState, LeaguePageRoute, Icons.stadium, "Leagues", widget),
+      topBarItem(setState, FriendsPageRoute, Icons.handshake, "Friends", widget),
     ];
 
     return Positioned(

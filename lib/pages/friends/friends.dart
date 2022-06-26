@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
+import 'package:stake_lane_web_app/pages/friends/bottom_bar_items.dart';
+import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
 class FriendsPageView extends StatelessWidget {
   const FriendsPageView({super.key});
@@ -10,6 +12,7 @@ class FriendsPageView extends StatelessWidget {
       children: [
         Column(
           children: [
+            const CustomText(text: "LIST!"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
@@ -17,11 +20,9 @@ class FriendsPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-            BottomBar(
-              bottomBarItems: [
-                bottomBarItem(Icons.person_rounded, "List"),
-                bottomBarItem(Icons.person_search_sharp, "Find"),
-              ],
+            SuperBottomBar(
+              activeButton: "List",
+              superBottomBarItems: bottomBarItems(),
             ),
           ],
         ),
