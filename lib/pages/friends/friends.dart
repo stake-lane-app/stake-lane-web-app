@@ -20,9 +20,9 @@ class FriendsPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-            SuperBottomBar(
+            BottomBar(
               activeButton: "List",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),
