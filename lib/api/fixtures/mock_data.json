@@ -1,0 +1,74 @@
+{
+  "running_fixture": {
+    "id": 247,
+    "goals_home_team": 0,
+    "goals_away_team": 1,
+    "starts_at_iso_date": "2022-06-26T21:00:00Z",
+    "event_timestamp": 1656277200,
+    "status_code": "1H",
+    "elapsed": 45,
+    "venue": "Estádio Governador Plácido Aderaldo Castelo",
+    "referee": "Douglas Marques das Flores, Brazil",
+    "home_team": {
+      "id": 12,
+      "name": "Ceara",
+      "full_name": null,
+      "logo": "https://media.api-sports.io/football/teams/129.png",
+      "is_national": false,
+      "founded": 1914,
+      "venue": {
+        "name": "Estádio Governador Plácido Aderaldo Castelo",
+        "surface": "grass",
+        "address": "Avenida Alberto Craveiro, Passaré",
+        "city": "Fortaleza, Ceará",
+        "capacity": 63903
+      },
+      "country": {
+        "id": 9,
+        "name": "Brazil",
+        "code": "BR",
+        "flag": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png"
+      }
+    },
+    "away_team": {
+      "id": 27,
+      "name": "Atletico Goianiense",
+      "full_name": null,
+      "logo": "https://media.api-sports.io/football/teams/144.png",
+      "is_national": false,
+      "founded": 1937,
+      "venue": {
+        "name": "Estádio Antônio Accioly",
+        "surface": "grass",
+        "address": "Avenida Perimetral 923 / Avenida 24 de Outubro, Bairro Campinas",
+        "city": "Goiânia, Goiás",
+        "capacity": 12500
+      },
+      "country": {
+        "id": 9,
+        "name": "Brazil",
+        "code": "BR",
+        "flag": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png"
+      }
+    },
+    "score": {
+      "halftime": "0-1",
+      "fulltime": null,
+      "extratime": null,
+      "penalty": null
+    },
+    "league": {
+      "country_flag": "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png",
+      "country_name": "Brazil",
+      "league_id": 2,
+      "name": "Brasileiro",
+      "season": 2022
+    },
+    "prediction": {
+      "home_team": 1,
+      "away_team": 2,
+      "score": 14,
+      "finished": false
+    }
+  }
+}

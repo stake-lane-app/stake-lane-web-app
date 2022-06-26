@@ -5,7 +5,11 @@ import 'package:stake_lane_web_app/api/auth/sign_in.dart';
 var client = http.Client();
 
 Future<Map<dynamic, dynamic>> upsertPrediction(fixtureId, predictionHomeTeam, predictionAwayTeam) async {
+  // TODO: Instead of crazily calling signIn like that, a renew section should be done
+  // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
+
+  // TODO: Set the API address in just one place
   String localIpAddress = "192.168.1.106";
 
   try {
@@ -31,9 +35,11 @@ Future<Map<dynamic, dynamic>> upsertPrediction(fixtureId, predictionHomeTeam, pr
         "success": true
       };
     }
-
+    
+    // TODO: Handle the error better than this
     return {"error": true};
   } finally {
+    // TODO: understand how and when we should really close the client
     // client.close();
   }
 }
