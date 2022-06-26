@@ -1,14 +1,16 @@
 import 'package:stake_lane_web_app/constants/style.dart';
+import 'package:stake_lane_web_app/controllers/controllers.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
+import 'package:stake_lane_web_app/routing/routes.dart';
 
-Widget topBarItem(icon, subtitle, active) {
+Widget topBarItem(setState, destination, icon, subtitle, widget) {
   Color color = dark;
   FontWeight weight = FontWeight.normal;
   double fontSize = 14.0;
 
-  if (active) {
+  if (widget.activeButton == destination) {
     color = activeColdColor;
     weight = FontWeight.bold;
     fontSize = 16.0;
@@ -19,7 +21,15 @@ Widget topBarItem(icon, subtitle, active) {
     height: 55,
     child: MaterialButton(
       onPressed: () {
-
+        setState(
+          () => {
+            if (widget.activeButton != destination)
+              {
+                widget.activeButton = destination,
+                navigationController.navigateTo(destination),
+              },
+          },
+        );
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -44,27 +54,35 @@ Widget topBarItem(icon, subtitle, active) {
   );
 }
 
-// TODO: Prolly is gonna be stateful
-class TopBar extends StatelessWidget {
+class TopBar extends StatefulWidget {
   String activeButton = "Leagues";
-
   TopBar({
     super.key,
     required this.activeButton,
   });
 
   @override
-  Widget build(BuildContext context) {
-    List<Widget> topBarItems = [
-      topBarItem(Icons.group, "Pools", activeButton == "Pools"),
-      topBarItem(Icons.stadium, "Leagues", activeButton == "Leagues"),
-      topBarItem(Icons.handshake, "Friends", activeButton == "Friends"),
-    ];
+  State<TopBar> createState() => _TopBarState();
+}
 
+class _TopBarState extends State<TopBar> {
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     if (ResponsiveWidget.isLargeScreen(context)) {
       return Container();
     }
+
+    List<Widget> topBarItems = [
+      topBarItem(setState, PoolsPageRoute, Icons.group, "Pools", widget),
+      topBarItem(setState, LeaguePageRoute, Icons.stadium, "Leagues", widget),
+      topBarItem(setState, FriendsPageRoute, Icons.handshake, "Friends", widget),
+    ];
 
     return Positioned(
       top: 0,
@@ -75,7 +93,7 @@ class TopBar extends StatelessWidget {
           border: Border(
             bottom: BorderSide(
               color: dark.withOpacity(.1),
-              width: 1.0,
+              width: 2,
             ),
           ),
           color: Colors.grey[100],

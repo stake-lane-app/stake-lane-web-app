@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
-import 'package:stake_lane_web_app/pages/pools/bottom_bar_items.dart';
+import 'package:stake_lane_web_app/pages/friends/bottom_bar_items.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
-class PoolsPageView extends StatelessWidget {
-  const PoolsPageView({super.key});
+class FriendsFindPageView extends StatelessWidget {
+  const FriendsFindPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class PoolsPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            const CustomText(text: "MY POOLS!"),
+            const CustomText(text: "FIND!"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
@@ -20,12 +20,10 @@ class PoolsPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-
             SuperBottomBar(
-              activeButton: "My Pools",
+              activeButton: "Find",
               superBottomBarItems: bottomBarItems(),
             ),
-
           ],
         ),
       ],

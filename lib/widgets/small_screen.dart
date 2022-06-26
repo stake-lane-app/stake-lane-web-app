@@ -1,4 +1,5 @@
 import 'package:stake_lane_web_app/helpers/local_navigator.dart';
+import 'package:stake_lane_web_app/widgets/bars/top_bar.dart';
 import 'package:flutter/material.dart';
 
 class SmallScreen extends StatelessWidget {
@@ -6,6 +7,11 @@ class SmallScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return localNavigator();
+    return Column(children: [
+      Expanded(
+        child: TopBar(activeButton: "Leagues"),
+      ),
+      Expanded(child: localNavigator()),
+    ]);
   }
 }

@@ -77,24 +77,17 @@ Widget personalArea(context) {
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
     AppBar(
-      leading: !ResponsiveWidget.isSmallScreen(context)
-          ? Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 18),
-                  child: Image.asset(
-                    "assets/icons/logo.png",
-                    width: 28,
-                  ),
-                )
-              ],
-            )
-          : IconButton(
-              icon: const Icon(Icons.menu),
-              color: dark,
-              onPressed: () {
-                key.currentState?.openDrawer();
-              }),
+      leading: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(left: 18),
+            child: Image.asset(
+              "assets/icons/logo.png",
+              width: 28,
+            ),
+          )
+        ],
+      ),
       title: Row(children: [
         CustomText(text: "Stake Lane", color: dark, size: 16),
         Expanded(child: Container()),

@@ -1,5 +1,16 @@
 const LeaguePageRoute = "Leagues";
-const PoolPageRoute = "Pools";
-const FriendsPageRoute = "Friends";
+const LeaguePastFixturesPageRoute = "LeaguePastFixtures";
+const LeagueEditPageRoute = "LeagueEdit";
 
-List sideMenuItems = [LeaguePageRoute, PoolPageRoute, FriendsPageRoute];
+const PoolsPageRoute = "Pools";
+const PoolsCreatePageRoute = "PoolsCreate";
+const PoolsPublicPageRoute = "PoolsPublic";
+
+const FriendsPageRoute = "Friends";
+const FriendsFindPageRoute = "FriendsFind";
+
+List sideMenuItems = [
+  LeaguePageRoute,
+  PoolsPageRoute,
+  FriendsPageRoute,
+];
