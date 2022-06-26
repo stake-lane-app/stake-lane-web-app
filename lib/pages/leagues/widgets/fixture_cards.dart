@@ -9,7 +9,7 @@ class FixtureCards extends StatelessWidget {
     // double width = MediaQuery.of(context).size.width;
 
     return Column(
-      children: const [
+      children: [
         MatchCard(
           leagueCountry:
               "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png",

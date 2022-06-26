@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
-import 'package:get/get.dart';
-import 'package:stake_lane_web_app/controllers/counterController.dart';
 
 Widget club(logo, name) {
   return SizedBox(
@@ -29,27 +27,50 @@ Widget club(logo, name) {
   );
 }
 
-int changePrediction(currentPrediction, direction) {
+int calculatePrediction(currentPrediction, direction) {
   switch (direction) {
     case "increase":
-      return 0;
+      return currentPrediction + 1;
     case "decrease":
-      return 0;
+      if (currentPrediction != 0) {
+        return currentPrediction - 1;
+      }
   }
   return 0;
 }
 
-Widget predictingClubArea(fixtureId, previousPrediction) {
+void changePrediction(
+    currentPrediction, setState, widget, clubReference, direction) {
+  if (currentPrediction is! int) {
+    setState(
+      () => {
+        widget.homeTeamPrediction = 0,
+        widget.awayTeamPrediction = 0,
+      },
+    );
+  }
+
+  currentPrediction = calculatePrediction(
+    currentPrediction,
+    direction,
+  );
+  setState(
+    () => {
+      if (clubReference == "home")
+        {widget.homeTeamPrediction = currentPrediction}
+      else
+        {widget.awayTeamPrediction = currentPrediction}
+    },
+  );
+}
+
+Widget predictingClubArea(widget, setState, previousPrediction, clubReference) {
   var currentPrediction = previousPrediction;
   return Column(
     children: [
       IconButton(
-        onPressed: (() => {
-              currentPrediction = changePrediction(
-                currentPrediction is int ? currentPrediction : -1,
-                "increase",
-              )
-            }),
+        onPressed: (() => changePrediction(
+            currentPrediction, setState, widget, clubReference, "increase")),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
         // splashRadius: 1,
@@ -60,12 +81,8 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
         text: currentPrediction is int ? "$currentPrediction" : "-",
       ),
       IconButton(
-        onPressed: (() => {
-              currentPrediction = changePrediction(
-                currentPrediction is int ? currentPrediction : 0,
-                "decrease",
-              )
-            }),
+        onPressed: (() => changePrediction(
+            currentPrediction, setState, widget, clubReference, "decrease")),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
         // splashRadius: 0.1,
@@ -74,10 +91,15 @@ Widget predictingClubArea(fixtureId, previousPrediction) {
   );
 }
 
-Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
+Widget predictingArea(widget, setState) {
   return Row(
     children: [
-      predictingClubArea(fixtureId, homeTeamPrediction),
+      predictingClubArea(
+        widget,
+        setState,
+        widget.homeTeamPrediction,
+        "home",
+      ),
       const SizedBox(width: 10),
       Image.asset(
         "assets/match_card/cross.png",
@@ -88,13 +110,18 @@ Widget predictingArea(fixtureId, homeTeamPrediction, awayTeamPrediction) {
         color: dark,
       ),
       const SizedBox(width: 10),
-      predictingClubArea(fixtureId, awayTeamPrediction),
+      predictingClubArea(
+        widget,
+        setState,
+        widget.awayTeamPrediction,
+        "away",
+      ),
     ],
   );
 }
 
 class MatchCard extends StatefulWidget {
-  const MatchCard({
+  MatchCard({
     super.key,
     required this.fixtureId,
     required this.leagueCountry,
@@ -116,11 +143,11 @@ class MatchCard extends StatefulWidget {
 
   final String homeTeamName;
   final String homeTeamLogo;
-  final int? homeTeamPrediction;
+  int? homeTeamPrediction;
 
   final String awayTeamName;
   final String awayTeamLogo;
-  final int? awayTeamPrediction;
+  int? awayTeamPrediction;
 
   @override
   State<MatchCard> createState() => _MatchCardState();
@@ -195,11 +222,7 @@ class _MatchCardState extends State<MatchCard> {
               widget.homeTeamLogo,
               widget.homeTeamName,
             ),
-            predictingArea(
-              widget.fixtureId,
-              widget.homeTeamPrediction,
-              widget.awayTeamPrediction,
-            ),
+            predictingArea(widget, setState),
             club(
               widget.awayTeamLogo,
               widget.awayTeamName,
