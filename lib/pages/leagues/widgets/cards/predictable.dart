@@ -48,6 +48,7 @@ void changePrediction(
         widget.awayTeamPrediction = 0,
       },
     );
+    return;
   }
 
   currentPrediction = calculatePrediction(
@@ -124,7 +125,7 @@ class MatchCard extends StatefulWidget {
   MatchCard({
     super.key,
     required this.fixtureId,
-    required this.leagueCountry,
+    required this.countryFlag,
     required this.leagueName,
     required this.isoDateStartingHour,
     required this.homeTeamName,
@@ -136,7 +137,7 @@ class MatchCard extends StatefulWidget {
   });
 
   final int fixtureId;
-  final String leagueCountry;
+  final String countryFlag;
   final String leagueName;
 
   final String isoDateStartingHour;
@@ -161,11 +162,11 @@ class _MatchCardState extends State<MatchCard> {
 
   @override
   Widget build(BuildContext context) {
-    final startingHour = DateTime.parse(widget.isoDateStartingHour);
-
+    final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
+    
     return Container(
       width: 450,
-      height: 170,
+      height: 180,
       margin: const EdgeInsets.only(
         bottom: 10,
         top: 8,
@@ -189,8 +190,11 @@ class _MatchCardState extends State<MatchCard> {
             children: [
               Row(
                 children: [
+                  // SvgPicture.network(
+                  //   widget.countryFlag,
+                  // ),
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.leagueCountry),
+                    backgroundImage: NetworkImage(widget.countryFlag),
                     radius: 16,
                   ),
                   const SizedBox(width: 8),
