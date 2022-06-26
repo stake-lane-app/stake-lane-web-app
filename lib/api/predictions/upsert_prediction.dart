@@ -4,35 +4,35 @@ import 'package:stake_lane_web_app/api/auth/sign_in.dart';
 
 var client = http.Client();
 
-Future<Map<dynamic, dynamic>> myFixtures() async {
+Future<Map<dynamic, dynamic>> upsertPrediction(fixtureId, predictionHomeTeam, predictionAwayTeam) async {
   var signedData = await signIn();
   String localIpAddress = "192.168.1.106";
 
-  DateTime now = DateTime.now();
-  var timezone = now.timeZoneName;
-
   try {
-    var response = await client.get(
+    var response = await client.post(
       Uri.http(
         '$localIpAddress:4000',
-        '/api/v1/fixtures/my',
-        {"page": '0', "page_size": '40', "tz": "America/Sao_Paulo"},
+        '/api/v1/predictions',
       ),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
         'Authorization': '${signedData?["accessToken"]}'
       },
+      body: jsonEncode({
+        "fixture_id": fixtureId,
+        "prediction_home_team": predictionHomeTeam,
+        "prediction_away_team": predictionAwayTeam
+      }),
     );
-    if (response.statusCode == 200) {
+
+    if (response.statusCode == 204) {
       return {
-        "fixtures": jsonDecode(utf8.decode(response.bodyBytes)),
+        "success": true
       };
     }
 
-    return {
-      "error": true
-    };
+    return {"error": true};
   } finally {
     // client.close();
   }

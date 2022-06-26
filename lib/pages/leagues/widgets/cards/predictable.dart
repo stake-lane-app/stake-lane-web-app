@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
+import 'package:stake_lane_web_app/api/predictions/upsert_prediction.dart';
 
 Widget club(logo, name) {
   return SizedBox(
@@ -48,6 +49,12 @@ void changePrediction(
         widget.awayTeamPrediction = 0,
       },
     );
+
+    upsertPrediction(
+      widget.fixtureId,
+      widget.homeTeamPrediction,
+      widget.awayTeamPrediction,
+    );
     return;
   }
 
@@ -62,6 +69,12 @@ void changePrediction(
       else
         {widget.awayTeamPrediction = currentPrediction}
     },
+  );
+
+  upsertPrediction(
+    widget.fixtureId,
+    widget.homeTeamPrediction,
+    widget.awayTeamPrediction,
   );
 }
 
@@ -121,8 +134,8 @@ Widget predictingArea(widget, setState) {
   );
 }
 
-class MatchCard extends StatefulWidget {
-  MatchCard({
+class PredictableCard extends StatefulWidget {
+  PredictableCard({
     super.key,
     required this.fixtureId,
     required this.countryFlag,
@@ -151,10 +164,10 @@ class MatchCard extends StatefulWidget {
   int? awayTeamPrediction;
 
   @override
-  State<MatchCard> createState() => _MatchCardState();
+  State<PredictableCard> createState() => _PredictableCardState();
 }
 
-class _MatchCardState extends State<MatchCard> {
+class _PredictableCardState extends State<PredictableCard> {
   @override
   void setState(VoidCallback fn) {
     super.setState(fn);
@@ -163,7 +176,7 @@ class _MatchCardState extends State<MatchCard> {
   @override
   Widget build(BuildContext context) {
     final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
-    
+
     return Container(
       width: 450,
       height: 180,
