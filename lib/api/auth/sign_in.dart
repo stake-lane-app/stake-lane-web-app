@@ -1,18 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:stake_lane_web_app/api/common.dart';
 
 var client = http.Client();
 
 Future<Map<String, String>?> signIn() async {
   String accessToken;
   String renewalToken;
-  
-  // TODO: Set the API address in just one place
-  String localIpAddress = "192.168.1.106";
+
 
   try {
     var response = await client.post(
-      Uri.http('$localIpAddress:4000', '/api/v1/session'),
+      Uri.http(apiAddress, '/api/v1/session'),
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',

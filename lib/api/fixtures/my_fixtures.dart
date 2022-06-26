@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:stake_lane_web_app/api/auth/sign_in.dart';
+import 'package:stake_lane_web_app/api/common.dart';
 
 var client = http.Client();
 
@@ -9,8 +10,6 @@ Future<Map<dynamic, dynamic>> myFixtures() async {
   // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
   
-  // TODO: Set the API address in just one place
-  String localIpAddress = "192.168.1.106";
 
   // TODO: find a way to get user's timezone dynamically
   DateTime now = DateTime.now();
@@ -19,7 +18,7 @@ Future<Map<dynamic, dynamic>> myFixtures() async {
   try {
     var response = await client.get(
       Uri.http(
-        '$localIpAddress:4000',
+        apiAddress,
         '/api/v1/fixtures/my',
         // TODO: Create a pagination and set the page field dynamically
         {"page": '0', "page_size": '40', "tz": "America/Sao_Paulo"},

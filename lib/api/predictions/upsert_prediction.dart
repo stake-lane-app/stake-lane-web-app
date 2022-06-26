@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:stake_lane_web_app/api/auth/sign_in.dart';
+import 'package:stake_lane_web_app/api/common.dart';
 
 var client = http.Client();
 
@@ -9,13 +10,10 @@ Future<Map<dynamic, dynamic>> upsertPrediction(fixtureId, predictionHomeTeam, pr
   // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
 
-  // TODO: Set the API address in just one place
-  String localIpAddress = "192.168.1.106";
-
   try {
     var response = await client.post(
       Uri.http(
-        '$localIpAddress:4000',
+        apiAddress,
         '/api/v1/predictions',
       ),
       headers: {
