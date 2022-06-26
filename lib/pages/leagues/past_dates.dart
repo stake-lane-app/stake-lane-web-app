@@ -20,9 +20,9 @@ class LeaguePastDatesPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-            SuperBottomBar(
+            BottomBar(
               activeButton: "Past",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),

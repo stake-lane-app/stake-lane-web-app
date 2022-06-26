@@ -20,9 +20,9 @@ class LeagueEditPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-            SuperBottomBar(
+            BottomBar(
               activeButton: "Edit",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),

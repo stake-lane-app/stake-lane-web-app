@@ -4,7 +4,6 @@ import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 import 'package:stake_lane_web_app/pages/leagues/bottom_bar_items.dart';
 
 class LeaguesPageView extends StatelessWidget {
-
   const LeaguesPageView({super.key});
 
   @override
@@ -20,10 +19,9 @@ class LeaguesPageView extends StatelessWidget {
                 children: const [FixtureCards()],
               ),
             ),
-
-            SuperBottomBar(
+            BottomBar(
               activeButton: "Fixtures",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),

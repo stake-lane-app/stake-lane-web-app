@@ -20,12 +20,10 @@ class PoolsPageView extends StatelessWidget {
                 children: const [],
               ),
             ),
-
-            SuperBottomBar(
+            BottomBar(
               activeButton: "My Pools",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
-
           ],
         ),
       ],

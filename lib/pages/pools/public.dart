@@ -20,12 +20,10 @@ class PoolPublicPageRoute extends StatelessWidget {
                 children: const [],
               ),
             ),
-
-            SuperBottomBar(
+            BottomBar(
               activeButton: "Public",
-              superBottomBarItems: bottomBarItems(),
+              bottomBarItems: bottomBarItems(),
             ),
-
           ],
         ),
       ],
