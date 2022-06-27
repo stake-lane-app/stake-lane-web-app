@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
+import 'package:stake_lane_web_app/api/predictions/upsert_prediction.dart';
 
 Widget club(logo, name) {
   return SizedBox(
@@ -48,6 +49,13 @@ void changePrediction(
         widget.awayTeamPrediction = 0,
       },
     );
+
+    upsertPrediction(
+      widget.fixtureId,
+      widget.homeTeamPrediction,
+      widget.awayTeamPrediction,
+    );
+    return;
   }
 
   currentPrediction = calculatePrediction(
@@ -61,6 +69,12 @@ void changePrediction(
       else
         {widget.awayTeamPrediction = currentPrediction}
     },
+  );
+
+  upsertPrediction(
+    widget.fixtureId,
+    widget.homeTeamPrediction,
+    widget.awayTeamPrediction,
   );
 }
 
@@ -120,11 +134,11 @@ Widget predictingArea(widget, setState) {
   );
 }
 
-class MatchCard extends StatefulWidget {
-  MatchCard({
+class PredictableCard extends StatefulWidget {
+  PredictableCard({
     super.key,
     required this.fixtureId,
-    required this.leagueCountry,
+    required this.countryFlag,
     required this.leagueName,
     required this.isoDateStartingHour,
     required this.homeTeamName,
@@ -136,7 +150,7 @@ class MatchCard extends StatefulWidget {
   });
 
   final int fixtureId;
-  final String leagueCountry;
+  final String countryFlag;
   final String leagueName;
 
   final String isoDateStartingHour;
@@ -150,10 +164,10 @@ class MatchCard extends StatefulWidget {
   int? awayTeamPrediction;
 
   @override
-  State<MatchCard> createState() => _MatchCardState();
+  State<PredictableCard> createState() => _PredictableCardState();
 }
 
-class _MatchCardState extends State<MatchCard> {
+class _PredictableCardState extends State<PredictableCard> {
   @override
   void setState(VoidCallback fn) {
     super.setState(fn);
@@ -161,11 +175,11 @@ class _MatchCardState extends State<MatchCard> {
 
   @override
   Widget build(BuildContext context) {
-    final startingHour = DateTime.parse(widget.isoDateStartingHour);
+    final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
 
     return Container(
       width: 450,
-      height: 170,
+      height: 180,
       margin: const EdgeInsets.only(
         bottom: 10,
         top: 8,
@@ -189,8 +203,11 @@ class _MatchCardState extends State<MatchCard> {
             children: [
               Row(
                 children: [
+                  // SvgPicture.network(
+                  //   widget.countryFlag,
+                  // ),
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.leagueCountry),
+                    backgroundImage: NetworkImage(widget.countryFlag),
                     radius: 16,
                   ),
                   const SizedBox(width: 8),

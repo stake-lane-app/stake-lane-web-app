@@ -16,7 +16,7 @@ class LeaguesPageView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),
                 scrollDirection: Axis.vertical,
-                children: const [FixtureCards()],
+                children: [FixtureCards(page: 0)],
               ),
             ),
             BottomBar(
