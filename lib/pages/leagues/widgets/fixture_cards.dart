@@ -4,12 +4,16 @@ import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
 class FixtureCards extends StatelessWidget {
-  const FixtureCards({super.key});
+  int page;
+  FixtureCards({
+    super.key,
+    required this.page,
+  });
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<dynamic, dynamic>>(
-      future: myFixtures(),
+      future: myFixtures(page),
       initialData: const {"loading": true},
       builder: (BuildContext context,
           AsyncSnapshot<Map<dynamic, dynamic>> snapshot) {
@@ -33,11 +37,16 @@ class FixtureCards extends StatelessWidget {
               awayTeamPrediction = fixture["prediction"]["away_team"];
             }
 
+            // TODO: Solve CORS for images https://stackoverflow.com/questions/65653801/flutter-web-cant-load-network-image-from-another-domain
+            // TODO: https://cloud.google.com/storage/docs/configuring-cors
+
             fixturesToScreen.add(
               // TODO: create based on statusCode logic to call the cards builder
               // TODO: Depending on that we're gonna call Predictable, Running, Finished, etc.
               PredictableCard(
-                countryFlag: fixture["league"]["country_flag"],
+                countryFlag: fixture["league"]["country_flag"] is String
+                    ? fixture["league"]["country_flag"]
+                    : '',
                 leagueName: fixture["league"]["name"],
                 isoDateStartingHour: fixture["starts_at_iso_date"],
                 homeTeamName: fixture["home_team"]["name"],

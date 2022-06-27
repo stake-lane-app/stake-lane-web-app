@@ -5,7 +5,7 @@ import 'package:stake_lane_web_app/api/common.dart';
 
 var client = http.Client();
 
-Future<Map<dynamic, dynamic>> myFixtures() async {
+Future<Map<dynamic, dynamic>> myFixtures(page) async {
   // TODO: Instead of crazily calling signIn like that, a renew section should be done
   // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
@@ -21,7 +21,7 @@ Future<Map<dynamic, dynamic>> myFixtures() async {
         apiAddress,
         '/api/v1/fixtures/my',
         // TODO: Create a pagination and set the page field dynamically
-        {"page": '0', "page_size": '40', "tz": "America/Sao_Paulo"},
+        {"page": "$page", "page_size": '40', "tz": "America/Sao_Paulo"},
       ),
       headers: {
         'Content-type': 'application/json',
