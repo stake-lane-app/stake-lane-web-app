@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/predictable.dart';
+import 'package:stake_lane_web_app/pages/leagues/widgets/cards/running.dart';
 import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:stake_lane_web_app/constants/match_status.dart';
@@ -51,7 +52,18 @@ Widget buildFixtureCard(fixture) {
   }
 
   if (runningStatusCode.contains(statusCode)) {
-    // TODO: Implement it
+    return RunningCard(
+      countryFlag: countryFlag,
+      leagueName: leagueName,
+      isoDateStartingHour: isoDateStartingHour,
+      homeTeamName: homeTeamName,
+      homeTeamLogo: homeTeamLogo,
+      awayTeamName: awayTeamName,
+      awayTeamLogo: awayTeamLogo,
+      fixtureId: fixtureId,
+      homeTeamPrediction: homeTeamPrediction,
+      awayTeamPrediction: awayTeamPrediction,
+    );
   }
 
   if (finishedStatusCode.contains(statusCode)) {

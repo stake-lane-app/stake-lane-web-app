@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/common.dart';
 
-class PredictableCard extends StatefulWidget {
-  PredictableCard({
+class RunningCard extends StatefulWidget {
+  RunningCard({
     super.key,
     required this.fixtureId,
     required this.countryFlag,
@@ -31,10 +31,10 @@ class PredictableCard extends StatefulWidget {
   int? awayTeamPrediction;
 
   @override
-  State<PredictableCard> createState() => _PredictableCardState();
+  State<RunningCard> createState() => _RunningCardState();
 }
 
-class _PredictableCardState extends State<PredictableCard> {
+class _RunningCardState extends State<RunningCard> {
   @override
   void setState(VoidCallback fn) {
     super.setState(fn);
@@ -44,7 +44,7 @@ class _PredictableCardState extends State<PredictableCard> {
   Widget build(BuildContext context) {
     final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
 
-    Widget predictableAreaContent = Column(
+    Widget runningAreaContent = Column(
       children: [
         cardHeader(widget, startingHour),
         Row(
@@ -66,6 +66,6 @@ class _PredictableCardState extends State<PredictableCard> {
       ],
     );
 
-    return baseCardStructure(predictableAreaContent);
+    return baseCardStructure(runningAreaContent);
   }
 }
