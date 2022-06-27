@@ -27,7 +27,7 @@
     },
 
     {
-      "name": "Flutter for Android (Physical)",
+      "name": "Flutter for Android (Physical WiFi)",
       "type": "dart",
       "request": "launch",
       "program": "lib/main.dart",
@@ -36,6 +36,18 @@
         "adb-18181FDF6004RW-pl0J83._adb-tls-connect._tcp"
       ]
     },
+
+    {
+      "name": "Flutter for Android (Physical Wired)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "args": [
+        "-d",
+        "18181FDF6004RW"
+      ]
+    },
+
 
     {
       "name": "Flutter for Android (Virtual)",
