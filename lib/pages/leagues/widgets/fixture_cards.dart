@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/predictable.dart';
-import 'package:stake_lane_web_app/pages/leagues/widgets/cards/running.dart';
+import 'package:stake_lane_web_app/pages/leagues/widgets/cards/live_and_finished.dart';
 import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:stake_lane_web_app/constants/match_status.dart';
 
 Widget buildFixtureCard(fixture) {
+  bool predicted = false;
   int? homeTeamPrediction;
   int? awayTeamPrediction;
+  int? predictionScore;
+  bool? predictionFinished;
 
   if (fixture["prediction"] != null) {
+    predicted = true;
     homeTeamPrediction = fixture["prediction"]["home_team"];
     awayTeamPrediction = fixture["prediction"]["away_team"];
+    predictionScore = fixture["prediction"]["score"];
+    predictionFinished = fixture["prediction"]["finished"];
   }
 
   String countryFlag = fixture["league"]["country_flag"] is String
@@ -26,6 +32,10 @@ Widget buildFixtureCard(fixture) {
   String awayTeamLogo = fixture["away_team"]["logo"];
   int fixtureId = fixture["id"];
   String statusCode = fixture["status_code"];
+
+  int? goalsHomeTeam = fixture["goals_home_team"];
+  int? goalsAwayTeam = fixture["goals_away_team"];
+  int? elapsed = fixture["elapsed"];
 
   /* TODO: 
     1st Solve CORS for images
@@ -51,8 +61,9 @@ Widget buildFixtureCard(fixture) {
     );
   }
 
-  if (runningStatusCode.contains(statusCode)) {
-    return RunningCard(
+  if (runningStatusCode.contains(statusCode) ||
+      finishedStatusCode.contains(statusCode)) {
+    return LiveAndFinishedCard(
       countryFlag: countryFlag,
       leagueName: leagueName,
       isoDateStartingHour: isoDateStartingHour,
@@ -63,17 +74,19 @@ Widget buildFixtureCard(fixture) {
       fixtureId: fixtureId,
       homeTeamPrediction: homeTeamPrediction,
       awayTeamPrediction: awayTeamPrediction,
+      statusCode: statusCode,
+      predictionScore: predictionScore,
+      goalsHomeTeam: goalsHomeTeam,
+      goalsAwayTeam: goalsAwayTeam,
+      elapsed: elapsed,
+      predicted: predicted,
     );
-  }
-
-  if (finishedStatusCode.contains(statusCode)) {
-    // TODO: Implement it
   }
 
   if (specialEndingStatusCode.contains(statusCode)) {
     // TODO: Implement it
   }
-  
+
   return Container();
 }
 

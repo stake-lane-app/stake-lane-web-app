@@ -1,11 +1,11 @@
 Map toBeDefined = {"code": "TBD", "description": "Time To Be Defined"};
 Map notStarted = {"code": "NS", "description": "Not Started"};
 Map firstHalf = {"code": "1H", "description": "First Half"};
-Map halfTime = {"code": "HT", "description": "Halftime"};
+Map halfTime = {"code": "HT", "description": "Half time"};
 Map secondHalf = {"code": "2H", "description": "Second Half"};
 Map extraTime = {"code": "ET", "description": "Extra Time"};
 Map penalties = {"code": "P", "description": "Penalty In Progress"};
-Map finished = {"code": "FT", "description": "Match Finished"};
+Map finished = {"code": "FT", "description": "Finished"};
 Map extraTimeFinished = {
   "code": "AET",
   "description": "Match Finished After Extra Time"
