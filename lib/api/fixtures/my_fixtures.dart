@@ -21,7 +21,7 @@ Future<Map<dynamic, dynamic>> myFixtures(page) async {
         apiAddress,
         '/api/v1/fixtures/my',
         // TODO: Create a pagination and set the page field dynamically
-        {"page": "$page", "page_size": '40', "tz": "America/Sao_Paulo"},
+        {"page": "$page", "page_size": '50', "tz": "America/Sao_Paulo"},
       ),
       headers: {
         'Content-type': 'application/json',
