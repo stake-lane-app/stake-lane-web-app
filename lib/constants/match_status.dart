@@ -45,6 +45,12 @@ List finishedStatusCode = [
   technialLoss["code"]
 ];
 
+List extraTimeStatusCode = [
+  extraTime["code"],
+  breakTime["code"],
+  penalties["code"],
+];
+
 List specialEndingStatusCode = [
   suspended["code"],
   interrupted["code"],
