@@ -41,7 +41,7 @@ class _MainPoolViewState extends State<MainPoolView> {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBar? bottomNavigationBar = bottomBar(
+    SafeArea? bottomNavigationBar = bottomBar(
       widget,
       pageList,
       setState,

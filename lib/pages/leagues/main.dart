@@ -41,7 +41,7 @@ class _MainLeagueViewState extends State<MainLeagueView> {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBar? bottomNavigationBar = bottomBar(
+    SafeArea? bottomNavigationBar = bottomBar(
       widget,
       pageList,
       setState,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
 
 class MainFriendView extends StatefulWidget {
-  int pageIndex = 1;
+  int pageIndex = 0;
   MainFriendView({super.key});
 
   @override
@@ -13,14 +13,14 @@ class MainFriendView extends StatefulWidget {
 
 class _MainFriendViewState extends State<MainFriendView> {
   List<Widget> pageList = <Widget>[
+    const FriendsTimelinePageView(),
     const FriendsFindPageView(),
-    const FriendsListPageView(),
   ];
 
   List<BottomNavigationBarItem> bottomBarItems = const [
     BottomNavigationBarItem(
-      icon: Icon(Icons.person_rounded),
-      label: "List",
+      icon: Icon(Icons.groups),
+      label: "Friends Predictions",
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.person_search_sharp),
@@ -35,7 +35,7 @@ class _MainFriendViewState extends State<MainFriendView> {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBar? bottomNavigationBar = bottomBar(
+    SafeArea? bottomNavigationBar = bottomBar(
       widget,
       pageList,
       setState,
