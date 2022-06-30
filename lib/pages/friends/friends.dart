@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
-import 'package:stake_lane_web_app/pages/friends/bottom_bar_items.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
-class FriendsPageView extends StatelessWidget {
-  const FriendsPageView({super.key});
+class FriendsListPageView extends StatelessWidget {
+  const FriendsListPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +17,6 @@ class FriendsPageView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 children: const [],
               ),
-            ),
-            BottomBar(
-              activeButton: "List",
-              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),

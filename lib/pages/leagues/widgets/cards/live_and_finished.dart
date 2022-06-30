@@ -32,6 +32,10 @@ Widget elapsedInfo(widget) {
     color = dark;
   }
 
+  if (extraTimeStatusCode.contains(widget.statusCode)) {
+    barProgress = widget.elapsed / 120;
+  }
+
   CustomText elapsedText = CustomText(
     text: elapsed,
     weight: FontWeight.w700,
