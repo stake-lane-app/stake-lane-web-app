@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/fixture_cards.dart';
+import 'package:flutter/material.dart';
 
-class LeaguePastDatesPageView extends StatelessWidget {
-  const LeaguePastDatesPageView({super.key});
+class LeaguesFixturesPageView extends StatelessWidget {
+  const LeaguesFixturesPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +12,9 @@ class LeaguePastDatesPageView extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.only(top: 0),
             scrollDirection: Axis.vertical,
-            children: [FixtureCards(page: -1)],
+            children: [FixtureCards(page: 0)],
           ),
-        )
+        ),
       ],
     );
   }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stake_lane_web_app/widgets/bars/bottom_bar.dart';
-import 'package:stake_lane_web_app/pages/friends/bottom_bar_items.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
 class FriendsFindPageView extends StatelessWidget {
@@ -19,10 +17,6 @@ class FriendsFindPageView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 children: const [],
               ),
-            ),
-            BottomBar(
-              activeButton: "Find",
-              bottomBarItems: bottomBarItems(),
             ),
           ],
         ),
