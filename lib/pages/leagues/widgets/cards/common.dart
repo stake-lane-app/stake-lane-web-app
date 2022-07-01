@@ -33,6 +33,7 @@ Widget club(logo, name, cardWidth) {
           color: dark,
           text: name,
           textAlign: TextAlign.center,
+          maxLines: 3
         ),
       ],
     ),

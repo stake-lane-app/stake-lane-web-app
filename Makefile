@@ -4,7 +4,7 @@ physical_wired_pixel = 18181FDF6004RW
 physical_wired_xiaomi = 59ffc25f
 virtual_android = emulator-5554
 virtual_ios = F2BC7734-48AC-4C5C-8904-C85C92502418
-local_ip = 192.168.1.104
+local_ip = 192.168.1.101
 web_port = 3000
 
 run-web:		
@@ -26,4 +26,4 @@ run-virtual-android:
 	flutter run --device-id $(virtual_android)
 
 run-virtual-ios:
-	flutter run --device-id $(virtual_android)
+	flutter run --device-id $(virtual_ios)
