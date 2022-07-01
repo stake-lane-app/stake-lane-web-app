@@ -158,29 +158,32 @@ class _PredictableCardState extends State<PredictableCard> {
   @override
   Widget build(BuildContext context) {
     final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
+    double cardWidth = getCardWith(context);
 
     Widget predictableAreaContent = Column(
       children: [
-        cardHeader(widget, startingHour),
+        cardHeader(widget, startingHour, cardWidth),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(width: 20),
+            SizedBox(width: cardWidth * 0.05),
             club(
               widget.homeTeamLogo,
               widget.homeTeamName,
+              cardWidth,
             ),
             predictingArea(widget, setState),
             club(
               widget.awayTeamLogo,
               widget.awayTeamName,
+              cardWidth,
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: cardWidth * 0.05),
           ],
         )
       ],
     );
 
-    return baseCardStructure(predictableAreaContent);
+    return baseCardStructure(predictableAreaContent, cardWidth);
   }
 }

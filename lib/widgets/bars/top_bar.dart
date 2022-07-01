@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/helpers/responsiveness.dart';
 import 'package:stake_lane_web_app/routing/routes.dart';
 
-Widget topBarItem(setState, destination, icon, subtitle, widget) {
+Widget topBarItem(setState, destination, icon, subtitle, widget, screenWidth) {
   Color color = dark;
   FontWeight weight = FontWeight.normal;
   double fontSize = 14.0;
@@ -17,7 +17,7 @@ Widget topBarItem(setState, destination, icon, subtitle, widget) {
   }
 
   return SizedBox(
-    width: 130,
+    width: screenWidth / 3,
     height: 55,
     child: MaterialButton(
       onPressed: () {
@@ -41,12 +41,15 @@ Widget topBarItem(setState, destination, icon, subtitle, widget) {
           const SizedBox(
             width: 2,
           ),
-          CustomText(
-            size: fontSize,
-            color: color,
-            text: subtitle,
-            textAlign: TextAlign.center,
-            weight: weight,
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: CustomText(
+              size: fontSize,
+              color: color,
+              text: subtitle,
+              textAlign: TextAlign.center,
+              weight: weight,
+            ),
           ),
         ],
       ),
@@ -73,21 +76,42 @@ class _TopBarState extends State<TopBar> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     if (ResponsiveWidget.isLargeScreen(context)) {
       return Container();
     }
 
     List<Widget> topBarItems = [
-      topBarItem(setState, PoolsPageRoute, Icons.group, "Pools", widget),
-      topBarItem(setState, LeaguePageRoute, Icons.stadium, "Leagues", widget),
-      topBarItem(setState, FriendsPageRoute, Icons.handshake, "Friends", widget),
+      topBarItem(
+        setState,
+        PoolsPageRoute,
+        Icons.group,
+        "Pools",
+        widget,
+        screenWidth,
+      ),
+      topBarItem(
+        setState,
+        LeaguePageRoute,
+        Icons.stadium,
+        "Leagues",
+        widget,
+        screenWidth,
+      ),
+      topBarItem(
+        setState,
+        FriendsPageRoute,
+        Icons.handshake,
+        "Friends",
+        widget,
+        screenWidth,
+      ),
     ];
 
     return Positioned(
       top: 0,
       child: Container(
-        width: width,
+        width: screenWidth,
         height: 55,
         decoration: (BoxDecoration(
           border: Border(
