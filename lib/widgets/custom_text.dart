@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final FontWeight weight;
   final TextAlign textAlign;
   final int maxLines;
+  final bool wrapWords;
 
   const CustomText({
     super.key,
@@ -17,6 +18,7 @@ class CustomText extends StatelessWidget {
     this.weight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.maxLines = 3,
+    this.wrapWords = true,
   });
 
   @override
@@ -24,8 +26,9 @@ class CustomText extends StatelessWidget {
     return AutoSizeText(
       text,
       maxLines: maxLines,
+      minFontSize: 10,
       textAlign: textAlign,
-      wrapWords: false,
+      wrapWords: wrapWords,
       style: TextStyle(
         fontSize: size,
         color: color,

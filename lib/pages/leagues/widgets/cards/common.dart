@@ -17,7 +17,7 @@ double getCardWith(context) {
 
 Widget club(logo, name, cardWidth) {
   return SizedBox(
-    width: cardWidth * 0.20,
+    width: cardWidth * 0.25,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -33,7 +33,8 @@ Widget club(logo, name, cardWidth) {
           color: dark,
           text: name,
           textAlign: TextAlign.center,
-          maxLines: 3
+          maxLines: 3,
+          wrapWords: false,
         ),
       ],
     ),
