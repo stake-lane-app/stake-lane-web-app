@@ -186,8 +186,8 @@ Widget predictionArea(widget) {
             const SizedBox(width: 2),
             Image.asset(
               "assets/icons/logo.png",
-              height: 15,
-              width: 15,
+              height: 20,
+              width: 20,
               fit: BoxFit.contain,
               alignment: Alignment.center,
               color: textColor,

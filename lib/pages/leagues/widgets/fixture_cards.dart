@@ -3,6 +3,7 @@ import 'package:stake_lane_web_app/pages/leagues/widgets/cards/predictable.dart'
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/live_and_finished.dart';
 import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
+import 'package:stake_lane_web_app/widgets/loading.dart';
 import 'package:stake_lane_web_app/constants/match_status.dart';
 
 Widget buildFixtureCard(fixture) {
@@ -108,9 +109,8 @@ class FixtureCards extends StatelessWidget {
         if (snapshot.hasData) {
           Map content = snapshot.data as Map;
 
-          // TODO: Create a true Loader
           if (content["loading"] == true) {
-            return const CustomText(text: "Loading");
+            return const Loading();
           }
 
           List fixtures = content['fixtures'];
