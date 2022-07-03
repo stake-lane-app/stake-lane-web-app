@@ -49,6 +49,7 @@ Widget buildFixtureCard(fixture) {
 
   if (allowPredictionStatusCode.contains(statusCode)) {
     return PredictableCard(
+      key: ValueKey(fixtureId),
       countryFlag: countryFlag,
       leagueName: leagueName,
       isoDateStartingHour: isoDateStartingHour,
@@ -65,6 +66,7 @@ Widget buildFixtureCard(fixture) {
   if (runningStatusCode.contains(statusCode) ||
       finishedStatusCode.contains(statusCode)) {
     return LiveAndFinishedCard(
+      key: ValueKey(fixtureId),
       countryFlag: countryFlag,
       leagueName: leagueName,
       isoDateStartingHour: isoDateStartingHour,
