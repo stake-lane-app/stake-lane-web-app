@@ -48,7 +48,6 @@ class _PaginatedFixtureListViewState extends State<PaginatedFixtureListView> {
       if (isLastPage) {
         _pagingController.appendLastPage(fixtures);
       } else {
-        // final nextPageKey = pageKey + fixtures.length;
         final nextPageKey = pageKey + 1;
         _pagingController.appendPage(fixtures, nextPageKey);
       }
