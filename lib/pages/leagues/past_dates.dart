@@ -48,7 +48,6 @@ class _PaginatedPastFixtureListViewState extends State<PaginatedPastFixtureListV
       if (isLastPage) {
         _pagingController.appendLastPage(fixtures);
       } else {
-        // final nextPageKey = pageKey + fixtures.length;
         final nextPageKey = pageKey - 1;
         _pagingController.appendPage(fixtures, nextPageKey);
       }
