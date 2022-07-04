@@ -1,5 +1,7 @@
 import 'package:stake_lane_web_app/pages/leagues/widgets/fixture_cards.dart';
 import 'package:flutter/material.dart';
+import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class LeaguesFixturesPageView extends StatelessWidget {
   const LeaguesFixturesPageView({super.key});
@@ -9,13 +11,70 @@ class LeaguesFixturesPageView extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: ListView(
-            padding: const EdgeInsets.only(top: 0),
-            scrollDirection: Axis.vertical,
-            children: [FixtureCards(page: 0)],
-          ),
+          child: PaginatedFixtureListView(),
         ),
       ],
     );
+  }
+}
+
+class PaginatedFixtureListView extends StatefulWidget {
+
+  @override
+  _PaginatedFixtureListViewState createState() =>
+      _PaginatedFixtureListViewState();
+}
+
+class _PaginatedFixtureListViewState extends State<PaginatedFixtureListView> {
+  static const _pageSize = 15;
+
+  final PagingController<int, dynamic> _pagingController =
+      PagingController(firstPageKey: 0);
+
+  @override
+  void initState() {
+    _pagingController.addPageRequestListener((pageKey) {
+      _fetchPage(pageKey);
+    });
+    super.initState();
+  }
+
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      final content = await myFixtures(pageKey, _pageSize);
+      List<dynamic> fixtures = content['fixtures'];
+
+      final isLastPage = fixtures.length < _pageSize;
+      if (isLastPage) {
+        _pagingController.appendLastPage(fixtures);
+      } else {
+        // final nextPageKey = pageKey + fixtures.length;
+        final nextPageKey = pageKey + 1;
+        _pagingController.appendPage(fixtures, nextPageKey);
+      }
+    } catch (error) {
+      _pagingController.error = error;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () => Future.sync(
+        () => _pagingController.refresh(),
+      ),
+      child: PagedListView<int, dynamic>(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<dynamic>(
+          itemBuilder: (context, item, index) => buildFixtureCard(item),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
   }
 }

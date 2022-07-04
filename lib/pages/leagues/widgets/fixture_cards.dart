@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/predictable.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/live_and_finished.dart';
-import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
-import 'package:stake_lane_web_app/widgets/custom_text.dart';
-import 'package:stake_lane_web_app/widgets/loading.dart';
 import 'package:stake_lane_web_app/constants/match_status.dart';
 
 Widget buildFixtureCard(fixture) {
@@ -93,46 +90,3 @@ Widget buildFixtureCard(fixture) {
   return Container();
 }
 
-class FixtureCards extends StatelessWidget {
-  int page;
-  FixtureCards({
-    super.key,
-    required this.page,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: Pagination here
-    return FutureBuilder<Map<dynamic, dynamic>>(
-      future: myFixtures(page),
-      initialData: const {"loading": true},
-      builder: (BuildContext context,
-          AsyncSnapshot<Map<dynamic, dynamic>> snapshot) {
-        if (snapshot.hasData) {
-          Map content = snapshot.data as Map;
-
-          if (content["loading"] == true) {
-            return const Loading();
-          }
-
-          List fixtures = content['fixtures'];
-          List<Widget> fixturesToScreen = [];
-
-          for (var fixture in fixtures) {
-            fixturesToScreen.add(buildFixtureCard(fixture));
-          }
-
-          return Column(
-            children: fixturesToScreen,
-          );
-        }
-        if (snapshot.hasError) {
-          // TODO: Implement error
-        }
-
-        // TODO: Create a generic error page
-        return const CustomText(text: "SOME ERROR =(");
-      },
-    );
-  }
-}
