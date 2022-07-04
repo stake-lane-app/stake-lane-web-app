@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
+import 'package:stake_lane_web_app/widgets/loading.dart';
 import 'package:stake_lane_web_app/api/predictions/upsert_prediction.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/cards/common.dart';
 
@@ -17,13 +17,28 @@ int calculatePrediction(currentPrediction, direction) {
   return 0;
 }
 
-void changePrediction(
+Future<void> apiInteraction(setState, widget) async {
+  setState(() => widget.loading = LoadingStatus.loading);
+  dynamic response = await upsertPrediction(
+    widget.fixtureId,
+    widget.homeTeamPrediction,
+    widget.awayTeamPrediction,
+  );
+  if (response["success"] == true) {
+    setState(() => widget.loading = LoadingStatus.notLoading);
+    return;
+  }
+
+  setState(() => widget.loading = LoadingStatus.error);
+}
+
+Future<void> changePrediction(
   currentPrediction,
   setState,
   widget,
   clubReference,
   direction,
-) {
+) async {
   if (currentPrediction is! int) {
     setState(
       () => {
@@ -31,12 +46,7 @@ void changePrediction(
         widget.awayTeamPrediction = 0,
       },
     );
-
-    upsertPrediction(
-      widget.fixtureId,
-      widget.homeTeamPrediction,
-      widget.awayTeamPrediction,
-    );
+    await apiInteraction(setState, widget);
     return;
   }
 
@@ -53,11 +63,7 @@ void changePrediction(
     },
   );
 
-  upsertPrediction(
-    widget.fixtureId,
-    widget.homeTeamPrediction,
-    widget.awayTeamPrediction,
-  );
+  await apiInteraction(setState, widget);
 }
 
 Widget predictingClubArea(widget, setState, previousPrediction, clubReference) {
@@ -65,8 +71,15 @@ Widget predictingClubArea(widget, setState, previousPrediction, clubReference) {
   return Column(
     children: [
       IconButton(
-        onPressed: (() => changePrediction(
-            currentPrediction, setState, widget, clubReference, "increase")),
+        onPressed: (() {
+          changePrediction(
+            currentPrediction,
+            setState,
+            widget,
+            clubReference,
+            "increase",
+          );
+        }),
         icon: const Icon(Icons.arrow_upward),
         color: dark,
         // splashRadius: 1,
@@ -77,14 +90,85 @@ Widget predictingClubArea(widget, setState, previousPrediction, clubReference) {
         text: currentPrediction is int ? "$currentPrediction" : "-",
       ),
       IconButton(
-        onPressed: (() => changePrediction(
-            currentPrediction, setState, widget, clubReference, "decrease")),
+        onPressed: (() {
+          changePrediction(
+            currentPrediction,
+            setState,
+            widget,
+            clubReference,
+            "decrease",
+          );
+        }),
         icon: const Icon(Icons.arrow_downward),
         color: dark,
         // splashRadius: 0.1,
       )
     ],
   );
+}
+
+Widget loadingState() {
+  return Column(
+    children: [
+      SizedBox(
+        height: 80,
+        width: 50,
+        child: FittedBox(
+          alignment: Alignment.topCenter,
+          fit: BoxFit.contain,
+          child: Loading(key: UniqueKey()),
+        ),
+      ),
+      const SizedBox(height: 30),
+    ],
+  );
+}
+
+Widget versusSymbol() {
+  return Row(
+    children: [
+      const SizedBox(width: 10),
+      Image.asset(
+        "assets/match_card/cross.png",
+        height: 30,
+        width: 30,
+        fit: BoxFit.contain,
+        alignment: Alignment.center,
+        color: dark,
+      ),
+      const SizedBox(width: 10),
+    ],
+  );
+}
+
+Widget errorState() {
+  return Row(
+    children: [
+      const SizedBox(width: 10),
+      SizedBox(
+        width: 30,
+        child: Icon(
+          Icons.error_outline,
+          color: activeHotColor,
+        ),
+      ),
+      const SizedBox(width: 10),
+    ],
+  );
+}
+
+Widget controlLoadingStates(widget) {
+  switch (widget.loading) {
+    case LoadingStatus.loading:
+      return loadingState();
+
+    case LoadingStatus.error:
+      return errorState();
+
+    case LoadingStatus.notLoading:
+    default:
+      return versusSymbol();
+  }
 }
 
 Widget predictingArea(widget, setState) {
@@ -96,16 +180,7 @@ Widget predictingArea(widget, setState) {
         widget.homeTeamPrediction,
         "home",
       ),
-      const SizedBox(width: 10),
-      Image.asset(
-        "assets/match_card/cross.png",
-        height: 30,
-        width: 30,
-        fit: BoxFit.contain,
-        alignment: Alignment.center,
-        color: dark,
-      ),
-      const SizedBox(width: 10),
+      controlLoadingStates(widget),
       predictingClubArea(
         widget,
         setState,
@@ -114,6 +189,12 @@ Widget predictingArea(widget, setState) {
       ),
     ],
   );
+}
+
+enum LoadingStatus {
+  loading,
+  error,
+  notLoading,
 }
 
 class PredictableCard extends StatefulWidget {
@@ -144,6 +225,8 @@ class PredictableCard extends StatefulWidget {
   final String awayTeamName;
   final String awayTeamLogo;
   int? awayTeamPrediction;
+
+  LoadingStatus loading = LoadingStatus.notLoading;
 
   @override
   State<PredictableCard> createState() => _PredictableCardState();
