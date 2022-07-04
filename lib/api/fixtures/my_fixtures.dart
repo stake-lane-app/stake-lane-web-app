@@ -10,17 +10,26 @@ Future<Map<dynamic, dynamic>> myFixtures(page, pageSize) async {
   // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
 
-  // TODO: find a way to get user's timezone dynamically
   DateTime now = DateTime.now();
-  var timezone = now.timeZoneName;
+  int timezone = now.timeZoneOffset.inHours;
+  String timezoneParsed = "UTC";
+  if (timezone < 0) {
+    timezoneParsed = "$timezone:00";
+  }
+  if (timezone > 0) {
+    timezoneParsed = "+$timezone:00";
+  }
 
   try {
     var response = await client.get(
       Uri.http(
         apiAddress,
         '/api/v1/fixtures/my',
-        // TODO: Create a pagination and set the page field dynamically
-        {"page": "$page", "page_size": '$pageSize', "tz": "America/Sao_Paulo"},
+        {
+          "page": "$page",
+          "page_size": '$pageSize',
+          "tz": timezoneParsed,
+        },
       ),
       headers: {
         'Content-type': 'application/json',
