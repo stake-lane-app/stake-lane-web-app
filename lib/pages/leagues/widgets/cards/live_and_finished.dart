@@ -137,18 +137,20 @@ class _LiveAndFinishedCardState extends State<LiveAndFinishedCard> {
   @override
   Widget build(BuildContext context) {
     final startingHour = DateTime.parse(widget.isoDateStartingHour).toLocal();
+    double cardWidth = getCardWith(context);
 
     Widget runningAreaContent = Column(
       children: [
-        cardHeader(widget, startingHour),
+        cardHeader(widget, startingHour, cardWidth),
         const SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(width: 20),
+            SizedBox(width: cardWidth*0.05),
             club(
               widget.homeTeamLogo,
               widget.homeTeamName,
+              cardWidth,
             ),
             SizedBox(
               width: 80,
@@ -164,13 +166,14 @@ class _LiveAndFinishedCardState extends State<LiveAndFinishedCard> {
             club(
               widget.awayTeamLogo,
               widget.awayTeamName,
+              cardWidth,
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: cardWidth*0.05),
           ],
         )
       ],
     );
 
-    return baseCardStructure(runningAreaContent);
+    return baseCardStructure(runningAreaContent, cardWidth);
   }
 }

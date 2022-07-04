@@ -4,9 +4,20 @@ import 'package:stake_lane_web_app/constants/style.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 import 'package:stake_lane_web_app/helpers/date.dart';
 
-Widget club(logo, name) {
+double getCardWith(context) {
+  const maxWidth = 450.0;
+  double screenWidth = MediaQuery.of(context).size.width;
+  double cardWidth = screenWidth;
+  if (screenWidth > maxWidth) {
+    cardWidth = maxWidth;
+  }
+
+  return cardWidth;
+}
+
+Widget club(logo, name, cardWidth) {
   return SizedBox(
-    width: 95,
+    width: cardWidth * 0.25,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -22,6 +33,8 @@ Widget club(logo, name) {
           color: dark,
           text: name,
           textAlign: TextAlign.center,
+          maxLines: 3,
+          wrapWords: false,
         ),
       ],
     ),
@@ -50,43 +63,53 @@ String formattedStartingDate(startingAt) {
       formattedDateInfo = "Yesterday - $hour";
       break;
     default:
-      formattedDateInfo = DateFormat('LLL d - $twentyFourHourPattern').format(startingAt);
+      formattedDateInfo =
+          DateFormat('LLL d - $twentyFourHourPattern').format(startingAt);
   }
 
   return formattedDateInfo;
 }
 
-Widget cardHeader(widget, startingAt) {
+Widget cardHeader(widget, startingAt, cardWidth) {
+  double headerWidth = cardWidth * 0.8;
+
   return SizedBox(
-    width: 350,
+    width: headerWidth,
     height: 40,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Row(
-          children: [
-            // SvgPicture.network(
-            //   widget.countryFlag,
-            // ),
-            CircleAvatar(
-              backgroundImage: NetworkImage(widget.countryFlag),
-              radius: 16,
-            ),
-            const SizedBox(width: 8),
-            CustomText(size: 14, color: dark, text: widget.leagueName),
-          ],
-        ),
-        Align(
-          alignment: Alignment.center,
+        SizedBox(
+          width: headerWidth * 0.5,
           child: Row(
             children: [
-              const SizedBox(width: 16),
-              CustomText(
-                size: 14,
-                color: dark,
-                text: formattedStartingDate(startingAt),
+              // SvgPicture.network(
+              //   widget.countryFlag,
+              // ),
+              CircleAvatar(
+                backgroundImage: NetworkImage(widget.countryFlag),
+                radius: 16,
               ),
+              const SizedBox(width: 8),
+              CustomText(size: 14, color: dark, text: widget.leagueName),
             ],
+          ),
+        ),
+        SizedBox(
+          width: headerWidth * 0.5,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // const SizedBox(width: 16),
+                CustomText(
+                  size: 14,
+                  color: dark,
+                  text: formattedStartingDate(startingAt),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -94,9 +117,9 @@ Widget cardHeader(widget, startingAt) {
   );
 }
 
-Widget baseCardStructure(dynamicArea) {
+Widget baseCardStructure(dynamicArea, cardWidth) {
   return Container(
-    width: 450,
+    width: cardWidth,
     height: 180,
     margin: const EdgeInsets.only(
       bottom: 10,
@@ -163,8 +186,8 @@ Widget predictionArea(widget) {
             const SizedBox(width: 2),
             Image.asset(
               "assets/icons/logo.png",
-              height: 15,
-              width: 15,
+              height: 20,
+              width: 20,
               fit: BoxFit.contain,
               alignment: Alignment.center,
               color: textColor,

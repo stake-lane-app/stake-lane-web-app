@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/widgets/custom_text.dart';
 
-class FriendsListPageView extends StatelessWidget {
-  const FriendsListPageView({super.key});
+class FriendsTimelinePageView extends StatelessWidget {
+  const FriendsTimelinePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class FriendsListPageView extends StatelessWidget {
       children: [
         Column(
           children: [
-            const CustomText(text: "LIST!"),
+            const CustomText(text: "TimeLine!"),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.only(top: 0),

@@ -38,8 +38,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case FriendsPageRoute:
       return _getPageRoute(MainFriendView());
-    case FriendsListPageRoute:
-      return _getPageRoute(const FriendsListPageView());
+    case FriendsTimelinePageRoute:
+      return _getPageRoute(const FriendsTimelinePageView());
     case FriendsFindPageRoute:
       return _getPageRoute(const FriendsFindPageView());
 

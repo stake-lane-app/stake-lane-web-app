@@ -5,23 +5,31 @@ import 'package:stake_lane_web_app/api/common.dart';
 
 var client = http.Client();
 
-Future<Map<dynamic, dynamic>> myFixtures(page) async {
+Future<Map<dynamic, dynamic>> myFixtures(page, pageSize) async {
   // TODO: Instead of crazily calling signIn like that, a renew section should be done
   // TODO: And the session tokens should be stored on the frontend side
   var signedData = await signIn();
-  
 
-  // TODO: find a way to get user's timezone dynamically
   DateTime now = DateTime.now();
-  var timezone = now.timeZoneName;
+  int timezone = now.timeZoneOffset.inHours;
+  String timezoneParsed = "UTC";
+  if (timezone < 0) {
+    timezoneParsed = "$timezone:00";
+  }
+  if (timezone > 0) {
+    timezoneParsed = "+$timezone:00";
+  }
 
   try {
     var response = await client.get(
       Uri.http(
         apiAddress,
         '/api/v1/fixtures/my',
-        // TODO: Create a pagination and set the page field dynamically
-        {"page": "$page", "page_size": '50', "tz": "America/Sao_Paulo"},
+        {
+          "page": "$page",
+          "page_size": '$pageSize',
+          "tz": timezoneParsed,
+        },
       ),
       headers: {
         'Content-type': 'application/json',
@@ -30,15 +38,14 @@ Future<Map<dynamic, dynamic>> myFixtures(page) async {
       },
     );
     if (response.statusCode == 200) {
+      List rawFixtures = jsonDecode(utf8.decode(response.bodyBytes));
       return {
-        "fixtures": jsonDecode(utf8.decode(response.bodyBytes)),
+        "fixtures": rawFixtures,
       };
     }
 
     // TODO: Handle the error better than this
-    return {
-      "error": true
-    };
+    return {"error": true};
   } finally {
     // TODO: understand how and when we should really close the client
     // client.close();

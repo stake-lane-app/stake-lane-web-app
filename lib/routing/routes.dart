@@ -9,7 +9,7 @@ const PoolsCreatePageRoute = "PoolsCreate";
 const PoolsPublicPageRoute = "PoolsPublic";
 
 const FriendsPageRoute = "Friends";
-const FriendsListPageRoute = "FriendsList";
+const FriendsTimelinePageRoute = "FriendsTimeline";
 const FriendsFindPageRoute = "FriendsFind";
 
 List sideMenuItems = [
