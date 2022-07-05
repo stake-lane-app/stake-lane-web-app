@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stake_lane_web_app/pages/leagues/widgets/fixture_cards.dart';
+import 'package:stake_lane_web_app/pages/exceptions/not_found.dart';
 import 'package:stake_lane_web_app/api/fixtures/my_fixtures.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -66,6 +67,12 @@ class _PaginatedPastFixtureListViewState extends State<PaginatedPastFixtureListV
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<dynamic>(
           itemBuilder: (context, item, index) => buildFixtureCard(item),
+          noItemsFoundIndicatorBuilder: (_) {
+            return NotFoundPageView(
+              notFoundMessage:
+                  'You can add leagues at edit screen',
+            );
+          },
         ),
       ),
     );
